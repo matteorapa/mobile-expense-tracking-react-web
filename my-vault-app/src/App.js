@@ -1,14 +1,33 @@
 import React from 'react';
-import './App.css';
-import Transaction from './components/Transaction';
-import Layout from './components/Layout';
+import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+
+//import pages
+import Vault from './pages/Vault';
+import Compare from './pages/Compare'
+import Account from './pages/Account'
+
+//import components
+import Header from './components/Header';
+import Footer from './components/Footer';
 
 function App() {
   return (
-    <div>
-      <Layout />
-      <Transaction />
-    </div>
+    <Router>
+      <div>
+
+        <Header />
+        
+        <Switch>
+          <Route path="/" component={Vault} exact />
+          <Route path="/compare" component={Compare} />
+          <Route path="/account" component={Account} />
+        </Switch>
+
+        <Footer />
+
+      </div>
+    </Router>
+    
   );
 }
 
