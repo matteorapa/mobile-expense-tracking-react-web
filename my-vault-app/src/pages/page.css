@@ -1,0 +1,54 @@
+@import url('https://fonts.googleapis.com/css?family=Rubik|Source+Sans+Pro&display=swap');
+
+.transactions{
+    display: flex;
+    flex-direction: column;
+}
+
+.transaction {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 9px;
+    margin: 3px;
+    border-radius: 3px;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+}
+
+.tr-date{
+    width: 10px;
+}
+
+.expense{
+    border: 1px solid rgb(226, 81, 81);
+    background-color: rgb(238, 176, 176);
+}
+
+.revenue{
+    border: 1px solid rgb(133, 226, 133);
+    background-color: rgb(194, 240, 194);
+}
+
+.deleted{
+    border: 1px solid rgba(0,0,0,0.2);
+    background-color: rgba(0,0,0,0.1);
+    text-decoration: line-through;
+    color: rgba(0,0,0,0.3);
+}
+h1{
+    font-family: 'Rubik', sans-serif;
+    font-size: 22px;
+}
+h2{
+    font-family: 'Rubik', sans-serif;
+    font-size: 20px;
+}
+h3{
+    font-family: 'Rubik', sans-serif;
+    font-size: 18px;
+}
+p{
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 16px;
+}
