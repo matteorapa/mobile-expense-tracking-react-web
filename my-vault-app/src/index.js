@@ -1,10 +1,6 @@
 import React, { createElement } from 'react';
 import ReactDOM from 'react-dom';
 
-//import styes
-import './index.css';
-//import 'bootstrap/dist/css/bootstrap.css';
-
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

@@ -1,11 +1,22 @@
 import React from 'react';
 
 export default class Account extends React.Component {
-  
+  constructor() {
+    super();
+  }
+
+  componentDidMount() {
+    
+  }
     render() {
       return (
         <div className="main-container">
-            <span><strong>Account</strong> top-level Component</span>
+            <h2>Create an Account</h2>
+
+            <input  type="text"/>
+            <input  type="email"/>
+            <input  type="password"/>
+            
         </div>
       );
     }
