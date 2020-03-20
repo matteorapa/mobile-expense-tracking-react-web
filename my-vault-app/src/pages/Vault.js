@@ -62,8 +62,7 @@ export default class Vault extends React.Component {
                       <span className="tr-amount">$30</span>
                   </div>
               </div>
-              <button>+ Transaction</button>
-              <button>+ Transaction</button>
+              <button type="button" class="btn btn-light"><i class="fas fa-money-check"></i> Add transaction</button>
               
               <h2>My Events</h2>
               <h2>Analytics</h2>
