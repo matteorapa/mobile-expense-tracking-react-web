@@ -6,8 +6,9 @@ export default class Sidebar extends React.Component {
   
     render() {
       return (
-        <div className="sidebar">
-           <h3>Stocks</h3>
+        <aside className="sidebar">
+    
+            <h3>Stocks</h3>
            <div className="stocks">
                 <div className="stock">
                     <span className="symbol">AAPL</span>
@@ -30,7 +31,12 @@ export default class Sidebar extends React.Component {
                     <span className="change negative">-1.2%</span>
                 </div>
            </div>
-        </div>
+           <button type="button" className="btn btn-outline-primary">Invest in Stocks</button>
+    
+        </aside>
+        
+           
+       
       );
     }
   }

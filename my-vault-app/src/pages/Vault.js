@@ -1,6 +1,8 @@
 import React from 'react';
 import './page.css';
 import Sidebar from '../components/Sidebar';
+import Transaction from '../components/Transaction';
+import TransactionList from '../components/TransactionList';
 
 export default class Vault extends React.Component {
    
@@ -33,35 +35,49 @@ export default class Vault extends React.Component {
     render() {
       return (
         <div className="main-container">
-            <h2>My Transactions</h2>
-            <div className="transactions">
-                <div className="transaction revenue">
-                    <i className="far fa-trash-alt"></i>
-                    <span className="tr-date">06/05/2020</span>
-                    <span className="tr-message">Tax Returns</span>
-                    <span className="tr-amount">$35</span>
-                </div>
-                <div className="transaction expense">
-                    <span className="tr-date">03/05/2020</span>
-                    <span className="tr-message">Apple Store</span>
-                    <span className="tr-amount">$899</span>
-                </div>
-                <div className="transaction expense">
-                    <span className="tr-date">03/05/2020</span>
-                    <span className="tr-message">Mc Donald's</span>
-                    <span className="tr-amount">$12</span>
-                </div>
-                <div className="transaction deleted">
-                    <span className="tr-date">03/05/2020</span>
-                    <span className="tr-message">Cash Withdrawal</span>
-                    <span className="tr-amount">$30</span>
-                </div>
+          <div className="container-block">
+
+            <div className="content-block">
+              <h2>My Transactions</h2>
+              <div className="transactions">
+                  <div className="transaction revenue">
+                      <i className="far fa-trash-alt"></i>
+                      <span className="tr-date">06/05/2020</span>
+                      <span className="tr-message">Tax Returns</span>
+                      <span className="tr-amount">$35</span>
+                  </div>
+                  <div className="transaction expense">
+                      <span className="tr-date">03/05/2020</span>
+                      <span className="tr-message">Apple Store</span>
+                      <span className="tr-amount">$899</span>
+                  </div>
+                  <div className="transaction expense">
+                      <span className="tr-date">03/05/2020</span>
+                      <span className="tr-message">Mc Donald's</span>
+                      <span className="tr-amount">$12</span>
+                  </div>
+                  <div className="transaction deleted">
+                      <span className="tr-date">03/05/2020</span>
+                      <span className="tr-message">Cash Withdrawal</span>
+                      <span className="tr-amount">$30</span>
+                  </div>
+              </div>
+              <button>+ Transaction</button>
+              <button>+ Transaction</button>
+              
+              <h2>My Events</h2>
+              <h2>Analytics</h2>
+                <TransactionList>
+                  <li>sugiuwsgsreghu</li>
+                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
+                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
+                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
+                </TransactionList>
+              
             </div>
-            <button>+ Transaction</button>
-            <button>+ Transaction</button>
             <Sidebar />
-            <h2>My Events</h2>
-            <h2>Analytics</h2>
+
+          </div>
         </div>
         
       );

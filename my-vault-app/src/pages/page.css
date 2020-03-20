@@ -38,11 +38,11 @@
 }
 h1{
     font-family: 'Rubik', sans-serif;
-    font-size: 22px;
+    font-size: 28px;
 }
 h2{
     font-family: 'Rubik', sans-serif;
-    font-size: 20px;
+    font-size: 22px;
 }
 h3{
     font-family: 'Rubik', sans-serif;
@@ -56,3 +56,54 @@ p{
 .main-container{
     padding: 24px;
 }
+
+
+/* welcome */
+
+.wallpaper{
+    background-image: url('../assets/front.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    height: 40vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.wallpaper h1{
+    font-size: 48px;
+    color: white;
+}
+
+.split {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 12px 0px;
+}
+
+.split div {
+    padding: 12px;
+    flex: 0 0 50%;
+}
+
+.split .left,
+.split.right{
+    text-align: center;
+} 
+
+p{
+    padding: 48px;
+}
+
+#signup{
+    width: 40%;
+    margin: 0 auto;
+}
+
+.navbar{
+    padding: 12px 240px;
+}
+
+

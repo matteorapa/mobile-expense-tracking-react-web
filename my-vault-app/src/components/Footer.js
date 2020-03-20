@@ -8,6 +8,7 @@ export default class Footer extends React.Component {
       return (
         <footer className="footer">
           <div className="container">
+              <hr />
             <span className="text-muted">Place sticky footer content here.</span>
           </div>
       </footer>

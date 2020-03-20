@@ -1,12 +1,5 @@
 /* sidebar */
 
-.sidebar{
-    border-radius: 3px;
-    border: 1px solid rgba(0,0,0,0.3);
-    padding: 6px 9px;
-    background-color: rgba(0,0,0,0.025);
-}
-
 .stocks{
     display: flex;
     flex-direction: column;
@@ -19,7 +12,7 @@
     font-size: 12px;
     border-radius: 3px;
     border: 1px solid rgba(0,0,0,0.3);
-    margin: 3px;
+    margin: 3px 0px;
     background-color:white;
 }
 
@@ -45,3 +38,28 @@
     width: 100px;
 }
 
+
+.container-block {
+    display: flex;
+    margin: 0 auto;
+    width: 100%;
+    
+  }
+  
+  .content-block {
+    flex: 0 0 75%;
+  }
+  
+  .sidebar {
+    flex: 0 0 25%;
+    padding: 6px 9px;
+    
+  }
+
+  #signin{
+      max-width: 20vw;
+      margin: 0 auto;
+  }
+
+  
+  
