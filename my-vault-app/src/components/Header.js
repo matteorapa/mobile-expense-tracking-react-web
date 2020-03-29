@@ -3,10 +3,8 @@ import {Link} from "react-router-dom";
 import './component.css';
 import LoginControl from '../components/LoginControl';
 
-export default class Header extends React.Component {
+const Header = (props) => { 
 
-  
-    render() {
       return (
         <header>
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -29,11 +27,12 @@ export default class Header extends React.Component {
                 
               </ul>
               <form className="form-inline my-2 my-lg-0">
-                <LoginControl />
+                <LoginControl {...props} />
               </form>
             </div>
           </nav>   
         </header>
       );
-    }
+    
   }
+  export default Header;

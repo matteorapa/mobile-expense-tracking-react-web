@@ -3,6 +3,7 @@ import './page.css';
 import Sidebar from '../components/Sidebar';
 import Transaction from '../components/Transaction';
 import TransactionList from '../components/TransactionList';
+import Header from '../components/Header';
 
 export default class Vault extends React.Component {
    
@@ -34,6 +35,8 @@ export default class Vault extends React.Component {
   }
     render() {
       return (
+        <div>
+          <Header />
         <div className="main-container">
           <div className="container-block">
 
@@ -62,7 +65,7 @@ export default class Vault extends React.Component {
                       <span className="tr-amount">$30</span>
                   </div>
               </div>
-              <button type="button" class="btn btn-light"><i class="fas fa-money-check"></i> Add transaction</button>
+              <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button>
               
               <h2>My Events</h2>
               <h2>Analytics</h2>
@@ -77,6 +80,7 @@ export default class Vault extends React.Component {
             <Sidebar />
 
           </div>
+        </div>
         </div>
         
       );

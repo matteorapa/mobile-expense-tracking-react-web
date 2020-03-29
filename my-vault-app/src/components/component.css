@@ -57,9 +57,19 @@
   }
 
   #signin{
-      max-width: 20vw;
-      margin: 0 auto;
-  }
+    max-width: 25vw;
+    margin: 0 auto;
+    border-radius: 3px;
+    box-shadow:  20px 20px 60px #eeeeee;
+    }
+
+    .submit {
+        text-align: center;
+    }
+
+    .submit button {
+    width: -webkit-fill-available;
+    }
 
   
   

@@ -19,13 +19,13 @@ function App() {
     <Router>
       <div>
 
-        <Header />
+        
         
         <Switch>
           <Route path="/" component={Welcome} exact />
           <ProtectedRoute path="/vault" component={Vault} exact />
-          <ProtectedRoute path="/compare" component={Compare} />
-          <Route path="/account" component={Account} />
+          <ProtectedRoute path="/compare" component={Compare} exact/>
+          <Route path="/account" component={Account} exact/>
           <Route path="*" component={ErrorPage} />
         </Switch>
 
