@@ -1,17 +1,41 @@
 class Authentication{
     constructor(){
         this.authenticated = false;
+        this.token = null;
     }
 
-    login(cb){
+    async login(email, password, cb){
         //todo  api call here
-        this.authenticated = true;
-        console.log('login user');
-        cb();
+        const requestOptions = {
+            method: 'POST',
+            headers: { 
+                'Content-Type': 'application/json',
+                'Allow-Control-Allow-Credentials': 'true' },
+            body: JSON.stringify({ 
+                email: email,
+                password: password
+
+            })
+        };
+        let response = await fetch('http://myvault.technology/api/login', requestOptions);
+        const status= await response.status;
+
+        if(status === 200){
+            console.log('Credentials match');
+            this.authenticated = true;
+            this.token = response.json().token;
+            cb();
+        }else if(status === 422){
+            console.log('Invalid email or password');
+        }else {
+            console.log('An error has occured during signin');
+        }
+        
     }
 
     logout(cb){
         this.authenticated = false;
+        this.token = null;
         cb();
     }
 
@@ -49,7 +73,6 @@ class Authentication{
             console.log('An error has occured');
             console.log(response);
         }
-        
     }
 }
 

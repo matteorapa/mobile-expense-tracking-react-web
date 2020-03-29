@@ -13,6 +13,7 @@ export default class Account extends React.Component {
       email: '',
       password: '',
       verify: '',
+      error: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -87,13 +88,21 @@ export default class Account extends React.Component {
       let p = this.state.password;
 
       authentication.createUser(n, s, d, e ,p, () => {
-          authentication.login(() => {
+          authentication.login(e , p, () => {
             this.state.props.history.push('/vault');
           })
       });
+
+      if(!authentication.isAuthenticated){
+        this.setState({
+          error: 'Failed. Unable to create account'
+        });
+      }
       
     }else {
-      console.log('passwords do not match');
+      this.setState({
+        error: 'Password does not match with verify'
+      });
     }
     
   }

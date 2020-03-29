@@ -14,7 +14,7 @@ export default class Compare extends React.Component {
         <div>
            <Header exitUser={this.exitUser.bind(this)} />
           <div className="main-container">
-              <span><strong>Compare</strong> top-level Component</span>
+              <span><strong>Compare Page</strong></span>
           </div>
         </div>
       );

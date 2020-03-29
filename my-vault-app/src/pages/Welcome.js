@@ -9,22 +9,29 @@ export default class Welcome extends React.Component {
    
     constructor() {
         super();
-    }
-
-    componentDidMount() {
+        this.authenticateUser = this.authenticateUser.bind(this);
         
     }
+
     exitUser(){
 
       authentication.logout(() => {
         this.props.history.push('/')});
     
     }
-    authenticateUser(){
+    authenticateUser(email, password, cb){
 
-        authentication.login(() => {
+        authentication.login(email, password, () => {
           this.props.history.push('/vault');
+
         });
+
+
+        //login failed, go to callback
+        if(!authentication.isAuthenticated){
+          cb('my error');
+        }
+        
       
     }
 
@@ -36,12 +43,12 @@ export default class Welcome extends React.Component {
             
             <div className="wallpaper">
               <h1>Take control of your finances.</h1>
-              {/* <button type="button" className"btn btn-outline-light btn-lg">Signup</button> */}
+              
             </div>
             <div className="split">
                 <div className="left"></div>
                 <div className="right">
-                  <Signin authenticateUser={this.authenticateUser.bind(this)} />
+                  <Signin authenticateUser={this.authenticateUser } />
                 </div>  
             </div>
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 

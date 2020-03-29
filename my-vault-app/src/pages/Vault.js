@@ -67,10 +67,8 @@ export default class Vault extends React.Component {
               </div>
               <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button>
               
-              <h2>My Events</h2>
-              <h2>Analytics</h2>
+              {/* // todo fix transaction conponents*/}
                 <TransactionList>
-                  <li>sugiuwsgsreghu</li>
                   <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
                   <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
                   <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
