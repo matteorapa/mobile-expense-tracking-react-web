@@ -14,15 +14,16 @@ export default class Transaction extends React.Component {
   
     render() {
       return (
-        <li className={this.state.type}>
-          <div className="tr-options">
-            <i className="far fa-trash-alt"></i>
-          </div>
-          
-          <span className="tr-date">{this.state.date}</span>
-          <span className="tr-message">{this.state.message}</span>
-          <span className="tr-amount">${this.state.amount}</span>           
-        </li>
+
+        <div className="transaction expense" onClick={this.props.view}>
+            <div className="tr-options">
+              <i className="far fa-trash-alt"></i>
+            </div>
+            <span className="tr-date">03/05/2020</span>
+            <span className="tr-message">Apple Store</span>
+            <span className="tr-amount">$899</span>
+        </div>
+
       );
     }
   }

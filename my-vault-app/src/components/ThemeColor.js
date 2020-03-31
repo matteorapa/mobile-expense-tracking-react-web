@@ -1,0 +1,66 @@
+import React from 'react';
+import './component.css';
+
+export default class ThemeColor extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            color : "#ff0000",
+            selectedColor: ""
+        }
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+
+    
+    componentDidMount(){
+        //api request to get the theme color state, and set the state accordingly
+
+        let userColor = '#ff0000'
+        this.setState({
+            color: userColor,
+            selectedColor: userColor
+        });
+        
+    }
+
+    
+
+    handleChange(event){
+        console.log('Handled color '+event.target.value);
+        if(event.target.name === 'color') {
+              this.setState({
+                    selectedColor: event.target.value
+                    
+              });
+        }
+    }
+
+    handleSubmit(event){
+        event.preventDefault();
+
+        this.setState({
+            color: this.state.selectedColor
+        });
+
+        //send post request to api to update color in db
+
+        document.body.style.setProperty('--theme-color', this.state.color);
+        
+      }
+  
+    render() {
+      return (
+        <div>
+            <h2>Select theme color</h2>
+            <form id="theme-color-form" onSubmit={this.handleSubmit} method="post">
+                <input type="color" id="themecolor" name="color" value={this.state.selectedColor}  onChange={this.handleChange} required/>
+                <input type="submit" />
+            </form>
+            
+        </div>
+      );
+    }
+  }

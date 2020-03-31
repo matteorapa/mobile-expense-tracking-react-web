@@ -2,13 +2,14 @@ import React from 'react';
 import './page.css';
 import Sidebar from '../components/Sidebar';
 import Transaction from '../components/Transaction';
-import TransactionList from '../components/TransactionList';
 import Header from '../components/Header';
+
 
 export default class Vault extends React.Component {
    
   constructor() {
     super();
+    this.view = this.view.bind(this);
   }
 
   componentDidMount() {
@@ -19,7 +20,7 @@ export default class Vault extends React.Component {
           this.setState({
             stock: result.AAPL
           });
-          console.log(this.state.stock);
+          //console.log(this.state.stock);
         },
 
         // Note: it's important to handle errors here
@@ -33,52 +34,55 @@ export default class Vault extends React.Component {
         }
       )
   }
+
+
+  view(){
+    this.props.history.push('/expense');
+  }
+
     render() {
       return (
         <div>
           <Header />
-        <div className="main-container">
-          <div className="container-block">
+          <div className="main-container focused">
+            <div className="container-block">
 
-            <div className="content-block">
-              <h2>My Transactions</h2>
-              <div className="transactions">
-                  <div className="transaction revenue">
-                      <i className="far fa-trash-alt"></i>
-                      <span className="tr-date">06/05/2020</span>
-                      <span className="tr-message">Tax Returns</span>
-                      <span className="tr-amount">$35</span>
-                  </div>
-                  <div className="transaction expense">
-                      <span className="tr-date">03/05/2020</span>
-                      <span className="tr-message">Apple Store</span>
-                      <span className="tr-amount">$899</span>
-                  </div>
-                  <div className="transaction expense">
-                      <span className="tr-date">03/05/2020</span>
-                      <span className="tr-message">Mc Donald's</span>
-                      <span className="tr-amount">$12</span>
-                  </div>
-                  <div className="transaction deleted">
-                      <span className="tr-date">03/05/2020</span>
-                      <span className="tr-message">Cash Withdrawal</span>
-                      <span className="tr-amount">$30</span>
-                  </div>
+              <div className="content-block">
+                <h2>My Expenses</h2>
+                <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button><br /><br />
+                <div className="transactions">
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                  <Transaction  view={this.view} />
+                </div>
+                
+                
               </div>
-              <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button>
-              
-              {/* // todo fix transaction conponents*/}
-                <TransactionList>
-                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
-                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
-                  <Transaction type='revenue' date='07/03/2020' message='My prop message' amount='69'/>
-                </TransactionList>
-              
-            </div>
-            <Sidebar />
 
+              <Sidebar />
+            </div>
           </div>
-        </div>
         </div>
         
       );

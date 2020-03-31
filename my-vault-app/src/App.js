@@ -7,7 +7,9 @@ import Compare from './pages/Compare'
 import Account from './pages/Account'
 import Welcome from './pages/Welcome'
 import ErrorPage from './pages/ErrorPage'
+import ExpenseTemplate from './pages/ExpenseTemplate'
 import Footer from './components/Footer';
+import Preferences from './pages/Preferences';
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route path="/" component={Welcome} exact />
           <ProtectedRoute path="/vault" component={Vault} exact />
           <ProtectedRoute path="/compare" component={Compare} exact/>
+          <ProtectedRoute path="/expense" component={ExpenseTemplate} />
+          <ProtectedRoute path="/preferences" component={Preferences} />
           <Route path="/account" component={Account} exact/>
           <Route path="*" component={ErrorPage} />
         </Switch>

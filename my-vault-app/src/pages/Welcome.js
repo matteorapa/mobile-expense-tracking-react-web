@@ -41,10 +41,10 @@ export default class Welcome extends React.Component {
           <Header exitUser={this.exitUser.bind(this)} />
           <div className="main-container">
             
-            <div className="wallpaper">
+            {/* <div className="wallpaper">
               <h1>Take control of your finances.</h1>
               
-            </div>
+            </div> */}
             <div className="split">
                 <div className="left"></div>
                 <div className="right">

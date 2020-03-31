@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import './component.css';
 import LoginControl from '../components/LoginControl';
-
+import DarkMode from './DarkMode'
 const Header = (props) => { 
 
       return (
@@ -24,8 +24,12 @@ const Header = (props) => {
                 <li className="nav-item">
                   <Link to="/vault" className="nav-link">My Finance</Link>    
                 </li>
+                <li className="nav-item">
+                  <Link to="/preferences" className="nav-link">Preferences</Link>    
+                </li>
                 
               </ul>
+                <DarkMode />
               <form className="form-inline my-2 my-lg-0">
                 <LoginControl {...props} />
               </form>

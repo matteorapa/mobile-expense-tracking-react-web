@@ -1,6 +1,6 @@
 class Authentication{
     constructor(){
-        this.authenticated = false;
+        this.authenticated = true;
         this.token = null;
     }
 
