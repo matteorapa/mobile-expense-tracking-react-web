@@ -1,7 +1,7 @@
 class Authentication{
     constructor(){
         this.authenticated = true;
-        this.token = null;
+        this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsidXNlcmlkIjoxMjMsIm5hbWUiOiJNYXR0ZW8iLCJlbWFpbCI6IjJAMi4yIiwiZG9iIjoiMjAyMC0wMy0wNVQwMDowMDowMC4wMDBaIiwic3VybmFtZSI6IlJhcGEifSwiaWF0IjoxNTg1NzQ3NjM3LCJleHAiOjE1ODU3NTEyMzd9.wqHh7frQKuEwE87wro0if49DIMg5WrPUQgSuJMukIDI';
     }
 
     async login(email, password, cb){
@@ -23,7 +23,8 @@ class Authentication{
         if(status === 200){
             console.log('Credentials match');
             this.authenticated = true;
-            this.token = response.json().token;
+            //console.log(response.json());
+            //this.token = response.json().token;
             cb();
         }else if(status === 422){
             console.log('Invalid email or password');

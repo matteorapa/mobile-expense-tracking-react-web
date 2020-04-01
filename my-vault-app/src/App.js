@@ -21,8 +21,8 @@ function App() {
           <ProtectedRoute path="/vault" component={Vault} exact />
           <ProtectedRoute path="/compare" component={Compare} exact/>
           <ProtectedRoute path="/expense" component={ExpenseTemplate} />
-          <ProtectedRoute path="/preferences" component={Preferences} />
-          <Route path="/account" component={Account} exact/>
+          <ProtectedRoute path="/account" component={Preferences} />
+          <Route path="/signup" component={Account} exact/>
           <Route path="*" component={ErrorPage} />
         </Switch>
 

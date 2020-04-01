@@ -156,6 +156,10 @@ p{
     margin: 0 6px;
 }
 
+.padding-icon{
+    margin: 0 6px;
+}
+
 .details-container{
     margin: 32px 0;
 }
@@ -173,6 +177,12 @@ p{
 .row {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
     align-items: center;
 }
 

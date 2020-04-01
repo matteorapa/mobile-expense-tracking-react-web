@@ -12,7 +12,7 @@ export const LoginControl = (props) => {
 
     } else {
     
-        return <Link to="/account"><button className="btn btn-outline-success my-2 my-sm-0" >Sign Up</button> </Link>;
+        return <Link to="/signup"><button className="btn btn-outline-success my-2 my-sm-0" >Sign Up</button> </Link>;
     }
 
 };

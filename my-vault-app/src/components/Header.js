@@ -25,7 +25,7 @@ const Header = (props) => {
                   <Link to="/vault" className="nav-link">My Finance</Link>    
                 </li>
                 <li className="nav-item">
-                  <Link to="/preferences" className="nav-link">Preferences</Link>    
+                  <Link to="/account" className="nav-link">Account</Link>    
                 </li>
                 
               </ul>

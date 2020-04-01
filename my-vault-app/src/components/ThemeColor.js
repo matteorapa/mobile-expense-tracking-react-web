@@ -53,14 +53,11 @@ export default class ThemeColor extends React.Component {
   
     render() {
       return (
-        <div>
-            <h2>Select theme color</h2>
-            <form id="theme-color-form" onSubmit={this.handleSubmit} method="post">
-                <input type="color" id="themecolor" name="color" value={this.state.selectedColor}  onChange={this.handleChange} required/>
-                <input type="submit" />
-            </form>
-            
-        </div>
+            <div className="form-group">
+                      <label htmlFor="firstname">Theme Color</label><br />
+                      <input type="color" className="color-picker" id="themecolor" name="color" value={this.state.selectedColor}  onChange={this.handleChange} required/>
+            </div>
+
       );
     }
   }
