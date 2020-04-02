@@ -2,6 +2,7 @@ import React from 'react';
 import Transaction from './Transaction';
 import authentication from '../authentication';
 
+
 export default class TransactionLoader extends React.Component {
   
 
@@ -9,7 +10,8 @@ export default class TransactionLoader extends React.Component {
       super(props);
       this.state = {
         call: 'http://myvault.technology/api/expenses/',
-        isLoading: false
+        isLoading: false,
+        dataSource : []
       }
       
     }
@@ -29,9 +31,9 @@ export default class TransactionLoader extends React.Component {
             if (response.success) {
               this.setState({
                 isLoading: false,
-                dataSource: response.output,
-              })
-              console.log( response.output);
+                dataSource: response.output
+              });
+      
             }
             else {
               //error loading
@@ -84,19 +86,13 @@ export default class TransactionLoader extends React.Component {
   
     render() {
 
-        // let obj = this.state.dataSource; 
-        // var result = [];
-        
-        // for(var i in obj){
-        //     result.push([i, obj [i]]);
-        // }
-
-        // result.shift();
-        let result = [{desc:"Hot Dogs",amount:"8",date:"03/02/2020"},
-                        {desc:"Apple Store",amount:"895",date:"25/02/2020"}]
+        let data = this.state.dataSource;
+        console.log(data);
+        // let result = [{desc:"Hot Dogs",amount:"8",date:"03/02/2020"},
+        //                 {desc:"Apple Store",amount:"895",date:"25/02/2020"}]
 
        
-        let transactions = result.map((obj) => {return (<Transaction  view={this.props.view}  expense={obj} /> )} ); 
+        let transactions = data.map((e) => {return (<Transaction  view={this.props.view}  expense={e} /> )} ); 
             
             
 

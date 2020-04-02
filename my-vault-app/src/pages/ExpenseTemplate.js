@@ -10,15 +10,8 @@ import { withRouter } from "react-router";
    
     constructor() {
         super();
-        this.state = {
-          expense_description : 'Apple Store',
-          expense_amount : '895',
-          currency: '$',
-          expense_date: '28/03/2020',
-          expense_payment: '',
-          id: '234'
-
-        }
+        
+    
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
@@ -56,7 +49,10 @@ import { withRouter } from "react-router";
 
     render() {
 
-      const { match, location, history } = this.props;
+      const {location} = this.props;
+      let date = new Date(location.state.expense.transactionDate);
+      date = date.toLocaleDateString();
+
       
       return (
         <div>
@@ -72,12 +68,12 @@ import { withRouter } from "react-router";
               </div>
 
               <div className="payment-container">Paid with <i className="fab fa-cc-apple-pay payment-icon"></i></div>
-              <div className="date-container">{location.state.expense.date}</div>
+              <div className="date-container">{date}</div>
               <hr />
               <div className="details-container form-row">
                 <div className="form-group col-md-6">
                   <label htmlFor="inputEmail4">Description</label>
-                  <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.desc} onChange={this.handleChange}  readOnly/>
+                  <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.transactionTitle} onChange={this.handleChange}  readOnly/>
                         <small id="emailHelp" className="form-text text-muted">Short description about your expense.</small>
                 </div>
                 <div className="form-group col-md-6">
@@ -86,9 +82,9 @@ import { withRouter } from "react-router";
 
                   <div className="input-group mb-2">
                     <div className="input-group-prepend">
-                      <div className="input-group-text">{this.state.currency}</div>
+                      <div className="input-group-text">{location.state.expense.transactionCurrency}</div>
                     </div>
-                    <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.amount} onChange={this.handleChange}  readOnly/>
+                    <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.expenseCost} onChange={this.handleChange}  readOnly/>
                
                   </div>
                 </div>

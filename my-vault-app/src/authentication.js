@@ -1,7 +1,7 @@
 class Authentication{
     constructor(){
         this.authenticated = true;
-        this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsidXNlcmlkIjoxMjMsIm5hbWUiOiJNYXR0ZW8iLCJlbWFpbCI6IjJAMi4yIiwiZG9iIjoiMjAyMC0wMy0wNVQwMDowMDowMC4wMDBaIiwic3VybmFtZSI6IlJhcGEifSwiaWF0IjoxNTg1NzQ3NjM3LCJleHAiOjE1ODU3NTEyMzd9.wqHh7frQKuEwE87wro0if49DIMg5WrPUQgSuJMukIDI';
+        this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsidXNlcmlkIjoxMjMsIm5hbWUiOiJNYXR0ZW8iLCJlbWFpbCI6IjJAMi4yIiwiZG9iIjoiMjAyMC0wMy0wNVQwMDowMDowMC4wMDBaIiwic3VybmFtZSI6IlJhcGEifSwiaWF0IjoxNTg1NzgxMjQ2LCJleHAiOjE1ODU3ODQ4NDZ9.yi83qF-zenq55Tp1rRRh5ICDZmFlwpfLEV1lY4l8ZCk';
     }
 
     async login(email, password, cb){
