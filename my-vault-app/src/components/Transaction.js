@@ -22,7 +22,7 @@ class Transaction extends React.Component {
     history: PropTypes.object.isRequired
   };
 
-  handleClick(expense){
+  handleClick(){
    
     const {history} = this.props;
     history.push({

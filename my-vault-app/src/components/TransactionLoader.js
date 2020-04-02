@@ -1,9 +1,12 @@
 import React from 'react';
 import Transaction from './Transaction';
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
 import authentication from '../authentication';
+import {Link} from "react-router-dom";
 
 
-export default class TransactionLoader extends React.Component {
+class TransactionLoader extends React.Component {
   
 
     constructor(props) {
@@ -13,11 +16,20 @@ export default class TransactionLoader extends React.Component {
         isLoading: true,
         dataSource : []
       }
+      this.addTransaction = this.addTransaction.bind(this);
+      this.handleChange = this.handleChange.bind(this);
+      this.getAllExpenses = this.getAllExpenses.bind(this);
       
     }
 
+    static propTypes = {
+      match: PropTypes.object.isRequired,
+      location: PropTypes.object.isRequired,
+      history: PropTypes.object.isRequired
+    };
+ 
     componentDidMount() {
-
+      
         fetch(this.state.call, {
           method: 'GET',
           headers: {
@@ -36,10 +48,8 @@ export default class TransactionLoader extends React.Component {
       
             }
             else {
-              //error loading
-              console.log('error loading');
-              console.log(authentication.token);
-
+              console.log('Failed to load transactions');
+            
             }
     
           })
@@ -47,6 +57,43 @@ export default class TransactionLoader extends React.Component {
             console.log(error);
           });
       }
+
+    async addTransaction(event){
+
+      console.log('add transaction mathod called');
+      await fetch('http://myvault.technology/api/expenses', {
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authentication.token,
+        },
+        body: JSON.stringify({
+            title: this.state.title,
+            category: this.state.category,
+            amount: this.state.amount,
+            cashCard: this.state.cashCard,
+            currency: this.state.currency,
+            onlineSwitch: this.state.onlineSwitch,
+        })
+    })
+
+
+        .then(response => (response.json()))
+        .then((response) => {
+
+            if (response.success) {
+                console.log('Added transaction successfully!');
+                this.componentDidMount();
+            }
+            else {
+                console.log('Something went wrong!')
+                console.log(response)
+                
+            }
+        })
+        .catch(error => console.warn(error))
+    }
 
     getAllExpenses() {
         this.setState({
@@ -83,8 +130,30 @@ export default class TransactionLoader extends React.Component {
         this.componentDidMount();
     
       }
+
+      handleChange(event){
+        switch(event.target.value){
+          case '1':
+            this.getAllExpenses();
+            break;
+          case '2':
+            this.getWeekExpenses();
+            break;
+          case '3':
+            this.getMonthExpenses();
+            break;
+          case '4':
+           this.getYearExpenses();
+            break;
+
+            default:
+              break;
+        }
+      }
   
     render() {
+
+        const {history} = this.props;
 
         let data = this.state.dataSource;
         let transactions = data.map((e) => {return (<Transaction   expense={e} /> )} ); 
@@ -100,34 +169,24 @@ export default class TransactionLoader extends React.Component {
         }else{
             return (
               <div>
-                  <div className="expense-filters">
-                      <span><i className="fas fa-funnel-dollar padding-icon"></i></span>
-                      <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                          <label className="btn btn-secondary active"> 
-                            <input type="radio" name="options" id="option1" /> Recent
-                          </label>
+                  <div className="form-row fix-row">
+                      <select id="filters" className="custom-select col-7" defaultValue="1" onChange={this.handleChange}>
+                        <option value="1">Recent</option>
+                        <option value="2">Weekly</option>
+                        <option value="3">Monthly</option>
+                        <option value="4">Yearly</option>
+                      </select>
 
-                          <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="option2" /> Weekly
-                          </label>
-
-                          <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="option3" /> Monthly
-                          </label>
-
-                          <label className="btn btn-secondary">
-                            <input type="radio" name="options" id="option3" /> Yearly
-                          </label>
-                    </div>
-
-                  </div>      
+                      <Link to="/addexpense"><button type="button" className="btn btn-light col"><i className="fas fa-money-check" ></i> Add transaction</button></Link><br /><br />
+                  </div><br />   
                   <div className="transactions">
                           {transactions}         
                   </div>
                 </div>
         
               );
-
         }
     }
   }
+
+  export default withRouter(TransactionLoader);

@@ -97,6 +97,14 @@
     .text-center {
         text-align: center;
     }
+
+    .custom-select select {
+        display: none; /*hide original SELECT element: */
+      }
+
+      .fix-row {
+        align-items: center;
+      }
     
 
   

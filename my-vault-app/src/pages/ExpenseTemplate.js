@@ -41,7 +41,10 @@ import { withRouter } from "react-router";
   
           if (response.success) {
             console.log('Deleted expense successfully!');
-            this.props.history.push('/vault')
+            this.props.history.push({
+              pathname: '/vault',
+              search: 'Your expense has been deleted sucessfully!' 
+            })
       
           }
           else {

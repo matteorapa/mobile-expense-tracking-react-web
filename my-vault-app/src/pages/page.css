@@ -186,6 +186,18 @@ p{
     align-items: center;
 }
 
+.currency-box{
+    background: transparent;
+    border: none;
+}
+
+.currency-box::selection{
+    background: transparent;
+    border: none;
+}
+
+
+
 
 
 

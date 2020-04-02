@@ -10,6 +10,7 @@ import ErrorPage from './pages/ErrorPage'
 import ExpenseTemplate from './pages/ExpenseTemplate'
 import Footer from './components/Footer';
 import Preferences from './pages/Preferences';
+import AddTransaction from './pages/AddTransaction'
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <ProtectedRoute path="/vault" component={Vault} exact />
           <ProtectedRoute path="/compare" component={Compare} exact/>
           <ProtectedRoute path="/expense" component={ExpenseTemplate} />
+          <ProtectedRoute path="/addexpense" component={AddTransaction} />
           <ProtectedRoute path="/account" component={Preferences} />
           <Route path="/signup" component={Account} exact/>
           <Route path="*" component={ErrorPage} />

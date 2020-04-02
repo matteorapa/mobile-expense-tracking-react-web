@@ -6,7 +6,15 @@ import Header from '../components/Header';
 
 
 export default class Vault extends React.Component {
-
+  constructor(props){
+    super(props)
+    
+      this.state = {
+        message: this.props.location.search
+      }
+   
+    
+  }
   componentDidMount() {
     // fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
     //   .then(res => res.json())
@@ -29,6 +37,7 @@ export default class Vault extends React.Component {
     //     }
     //   )
 
+
   }
   
     render() {
@@ -36,17 +45,17 @@ export default class Vault extends React.Component {
         <div>
           <Header />
           <div className="main-container focused">
-            <div className="container-block">
-
+            {/* <div className="container-block"> */}
+            <span className="alert alert-success">{this.state.message}</span>
               <div className="content-block">
                 <h2>My Expenses</h2>
-                <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button><br /><br />
+                
 
                 <TransactionLoader />          
               </div>
 
-              <Sidebar />
-            </div>
+              {/* <Sidebar /> */}
+            {/* </div> */}
           </div>
         </div>
         
