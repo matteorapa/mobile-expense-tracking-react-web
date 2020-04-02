@@ -93,6 +93,10 @@
         border: 1px dotted;
         background-color: var(--background-color);
     }
+
+    .text-center {
+        text-align: center;
+    }
     
 
   

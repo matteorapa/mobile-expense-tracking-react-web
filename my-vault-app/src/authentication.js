@@ -1,37 +1,36 @@
 class Authentication{
     constructor(){
-        this.authenticated = true;
-        this.token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZXN1bHQiOnsidXNlcmlkIjoxMjMsIm5hbWUiOiJNYXR0ZW8iLCJlbWFpbCI6IjJAMi4yIiwiZG9iIjoiMjAyMC0wMy0wNVQwMDowMDowMC4wMDBaIiwic3VybmFtZSI6IlJhcGEifSwiaWF0IjoxNTg1NzgxMjQ2LCJleHAiOjE1ODU3ODQ4NDZ9.yi83qF-zenq55Tp1rRRh5ICDZmFlwpfLEV1lY4l8ZCk';
-    }
+        this.authenticated = false;
+        this.token = 'empty';
+       }
 
     async login(email, password, cb){
-        //todo  api call here
-        const requestOptions = {
+        await fetch('http://myvault.technology/api/login', {
             method: 'POST',
-            headers: { 
+            headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Allow-Control-Allow-Credentials': 'true' },
-            body: JSON.stringify({ 
+            },
+            body: JSON.stringify({
                 email: email,
-                password: password
-
+                password: password,
             })
-        };
-        let response = await fetch('http://myvault.technology/api/login', requestOptions);
-        const status= await response.status;
+        })
 
-        if(status === 200){
-            console.log('Credentials match');
-            this.authenticated = true;
-            //console.log(response.json());
-            //this.token = response.json().token;
-            cb();
-        }else if(status === 422){
-            console.log('Invalid email or password');
-        }else {
-            console.log('An error has occured during signin');
-        }
+
+      .then(response => (response.json()))
+      .then((response) => {
         
+        if (response.token) {
+            this.token = response.token;
+            this.authenticated = true;
+            console.log('Credentials match, signed in successfully');
+            cb()
+        }
+      })
+      .catch(error => console.warn(error))
+
+
     }
 
     logout(cb){

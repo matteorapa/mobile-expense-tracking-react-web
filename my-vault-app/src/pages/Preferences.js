@@ -18,12 +18,6 @@ export default class Preferences extends React.Component {
         dob: '2000/05/01'
     }
   }
-  exitUser(){
-
-    authentication.logout(() => {
-      this.props.history.push('/')});
-  
-  }
 
   handleChange(event) {  
   
@@ -36,7 +30,7 @@ export default class Preferences extends React.Component {
     render() {
       return (
         <div>
-           <Header exitUser={this.exitUser.bind(this)} />
+           <Header />
             <div className="main-container focused">
                 <h2 className="text-center">My Account</h2>
 

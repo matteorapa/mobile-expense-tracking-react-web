@@ -6,11 +6,6 @@ import Header from '../components/Header';
 
 
 export default class Vault extends React.Component {
-   
-  constructor() {
-    super();
-    this.view = this.view.bind(this);
-  }
 
   componentDidMount() {
     // fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
@@ -35,16 +30,7 @@ export default class Vault extends React.Component {
     //   )
 
   }
-
-
-  view(expense){
-    this.props.history.push({
-        pathname: '/expense',
-        state: { expense: expense }
-      });
-
-  }
-
+  
     render() {
       return (
         <div>
@@ -56,30 +42,7 @@ export default class Vault extends React.Component {
                 <h2>My Expenses</h2>
                 <button type="button" className="btn btn-light"><i className="fas fa-money-check"></i> Add transaction</button><br /><br />
 
-                <div className="expense-filters">
-                  <span><i className="fas fa-funnel-dollar padding-icon"></i></span>
-                <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                  <label className="btn btn-secondary active"> 
-                    <input type="radio" name="options" id="option1" /> Recent
-                  </label>
-                  <label className="btn btn-secondary">
-                    <input type="radio" name="options" id="option2" /> Weekly
-                  </label>
-                  <label className="btn btn-secondary">
-                    <input type="radio" name="options" id="option3" /> Monthly
-                    </label>
-                    <label className="btn btn-secondary">
-                    <input type="radio" name="options" id="option3" /> Yearly
-                    </label>
-                </div>
-
-                </div>
-                
-
-                <TransactionLoader  view={this.view}/>
-                
-                
-                
+                <TransactionLoader />          
               </div>
 
               <Sidebar />

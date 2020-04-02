@@ -10,7 +10,7 @@ export default class TransactionLoader extends React.Component {
       super(props);
       this.state = {
         call: 'http://myvault.technology/api/expenses/',
-        isLoading: false,
+        isLoading: true,
         dataSource : []
       }
       
@@ -87,15 +87,8 @@ export default class TransactionLoader extends React.Component {
     render() {
 
         let data = this.state.dataSource;
-        console.log(data);
-        // let result = [{desc:"Hot Dogs",amount:"8",date:"03/02/2020"},
-        //                 {desc:"Apple Store",amount:"895",date:"25/02/2020"}]
-
-       
-        let transactions = data.map((e) => {return (<Transaction  view={this.props.view}  expense={e} /> )} ); 
+        let transactions = data.map((e) => {return (<Transaction   expense={e} /> )} ); 
             
-            
-
 
         if(this.state.isLoading){
             return (
@@ -106,9 +99,31 @@ export default class TransactionLoader extends React.Component {
               );
         }else{
             return (
+              <div>
+                  <div className="expense-filters">
+                      <span><i className="fas fa-funnel-dollar padding-icon"></i></span>
+                      <div className="btn-group btn-group-toggle" data-toggle="buttons">
+                          <label className="btn btn-secondary active"> 
+                            <input type="radio" name="options" id="option1" /> Recent
+                          </label>
 
-                <div className="transactions">
-                         {transactions}         
+                          <label className="btn btn-secondary">
+                            <input type="radio" name="options" id="option2" /> Weekly
+                          </label>
+
+                          <label className="btn btn-secondary">
+                            <input type="radio" name="options" id="option3" /> Monthly
+                          </label>
+
+                          <label className="btn btn-secondary">
+                            <input type="radio" name="options" id="option3" /> Yearly
+                          </label>
+                    </div>
+
+                  </div>      
+                  <div className="transactions">
+                          {transactions}         
+                  </div>
                 </div>
         
               );

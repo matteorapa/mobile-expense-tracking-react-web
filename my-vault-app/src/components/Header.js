@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import './component.css';
 import LoginControl from '../components/LoginControl';
 import DarkMode from './DarkMode'
+
 const Header = (props) => { 
 
       return (
@@ -31,7 +32,7 @@ const Header = (props) => {
               </ul>
                 <DarkMode />
               <form className="form-inline my-2 my-lg-0">
-                <LoginControl {...props} />
+                <LoginControl />
               </form>
             </div>
           </nav>   

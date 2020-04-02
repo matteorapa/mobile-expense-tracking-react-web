@@ -25,25 +25,44 @@ import { withRouter } from "react-router";
       history: PropTypes.object.isRequired
     };
 
-    exitUser(){
 
-      authentication.logout(() => {
-        this.props.history.push('/')});
-    
+    async handleDelete(event , id) { 
+      
+      await fetch('http://myvault.technology/api/expenses/del/' + id, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + authentication.token,
+        },
+      })
+        .then(response => (response.json()))
+        .then((response) => {
+  
+          if (response.success) {
+            console.log('Deleted expense successfully!');
+            this.props.history.push('/vault')
+      
+          }
+          else {
+            console.log('Error in deleting expense');
+            this.setState({
+              error: 'Unable to delete expense!'
+            });
+          }
+        })
+        .catch(error => console.warn(error))
     }
+
+    handleEdit(event) { 
+
+    }
+
     handleChange(event) { 
 
     }
 
     handleSubmit(event) { 
-
-    }
-
-    handleDelete(event) { 
-
-    }
-
-    handleEdit(event) { 
 
     }
 
@@ -56,7 +75,7 @@ import { withRouter } from "react-router";
       
       return (
         <div>
-          <Header exitUser={this.exitUser.bind(this)} />
+          <Header />
           <div className="main-container focused">
     
           <button type="button" className="btn btn-light" onClick={() => {this.props.history.push('/vault')}}><i className="fas fa-long-arrow-alt-left"></i> back</button>
@@ -91,7 +110,7 @@ import { withRouter } from "react-router";
               </div>
               <div className="row">
                 <button type="button" className="btn btn-light" onClick={this.handleEdit}>Edit</button>
-                <span className="tr-delete" onClick={this.handleDelete}>Delete</span>
+                <span className="tr-delete" onClick={(e) => this.handleDelete(e, location.state.expense.expenseid)}>Delete</span>
               </div>
               
               

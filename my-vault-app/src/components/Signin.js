@@ -3,28 +3,47 @@
 
 import React from 'react';
 import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
+import { withRouter } from "react-router";
+import authentication from '../authentication';
 import './component.css';
 
-export default class Welcome extends React.Component {
+class Signin extends React.Component {
+
   constructor(props){
     super(props);
 
     this.state = {
       user_email : '',
-      user_password : ''
+      user_password : '',
+      error: ''
     }
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(event){
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  };
+
+
+  async handleSubmit(event){
+    const {history} = this.props;
     event.preventDefault();
-    this.props.authenticateUser(this.state.user_email, this.state.user_password, (error) => {
+    let error = true;
+    await authentication.login(this.state.user_email, this.state.user_password, () => { 
+      error = false;
+      history.push('/vault');
+    });
+
+    if(error){
       this.setState({
-        error : error
+        error: 'Incorrect email or password'
       });
-    }); 
+    }
   }
 
   handleChange(event){  
@@ -69,6 +88,8 @@ export default class Welcome extends React.Component {
     );
   }
 }
+
+export default withRouter(Signin);
 
 
 
