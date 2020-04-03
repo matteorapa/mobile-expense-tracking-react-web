@@ -37,7 +37,6 @@ export default class Vault extends React.Component {
     //     }
     //   )
 
-
   }
   
     render() {

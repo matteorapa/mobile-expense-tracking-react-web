@@ -196,6 +196,14 @@ p{
     border: none;
 }
 
+.center-box{
+    text-align: center;
+}
+
+.theme-text{
+    color: var(--theme-color);
+}
+
 
 
 

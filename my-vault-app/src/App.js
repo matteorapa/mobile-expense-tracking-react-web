@@ -20,7 +20,7 @@ function App() {
         <Switch>
           <Route path="/" component={Welcome} exact />
           <ProtectedRoute path="/vault" component={Vault} exact />
-          <ProtectedRoute path="/compare" component={Compare} exact/>
+          <Route path="/compare" component={Compare} exact/>
           <ProtectedRoute path="/expense" component={ExpenseTemplate} />
           <ProtectedRoute path="/addexpense" component={AddTransaction} />
           <ProtectedRoute path="/account" component={Preferences} />

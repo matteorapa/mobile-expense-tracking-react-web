@@ -6,7 +6,7 @@ export default class DarkMode extends React.Component {
     constructor(props){
         super(props);
         this.state = {
-            darkMode : false
+            darkMode : true
         }
         this.toggleDarkMode = this.toggleDarkMode.bind(this);
     }
@@ -55,7 +55,7 @@ export default class DarkMode extends React.Component {
 
     dark(){
 
-        document.body.style.setProperty('--background-color', 'rgb(25, 25, 28)');
+        document.body.style.setProperty('--background-color', 'rgb(35, 35, 38)');
         document.body.style.setProperty('--text-color', 'rgb(250, 250, 250)');
         document.body.style.setProperty('--light-color', 'rgba(255,255,255)');
         document.body.style.setProperty('--dark-color', 'rgb(0, 0, 0)');
