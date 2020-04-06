@@ -1,5 +1,5 @@
 import React from 'react';
-import './component.css';
+
 
 export default class DarkMode extends React.Component {
 
@@ -67,11 +67,11 @@ export default class DarkMode extends React.Component {
 
         if(this.state.darkMode){
             return (
-                <button type="button" className="btn btn-dark side-margin" onClick={this.toggleDarkMode}>Dark Mode <i className="far fa-moon"></i></button>
+                <button type="button" className="btn btn-outline-dark" onClick={this.toggleDarkMode}>Dark Mode <i className="far fa-moon"></i></button>
               );
         }else {
             return (
-                <button type="button" className="btn btn-light side-margin" onClick={this.toggleDarkMode}>Light Mode <i className="far fa-lightbulb"></i></button>
+                <button type="button" className="btn btn-light" onClick={this.toggleDarkMode}>Light Mode <i className="far fa-lightbulb"></i></button>
                 
               );
         }

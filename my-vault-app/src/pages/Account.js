@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import authentication from '../authentication';
+import Header from '../components/Header'
 
 export default class Account extends React.Component {
   constructor(props){
@@ -108,7 +109,9 @@ export default class Account extends React.Component {
 
   render() {
       return (
-        <div className="main-container">
+        <div>
+          <Header />
+        <div className="main-container focused">
             <form id="signup" onSubmit={this.handleSubmit} method="post">
               <div className="form-group">
                 <h1 className="title-center">Your Account</h1><hr />
@@ -149,6 +152,7 @@ export default class Account extends React.Component {
             </form>
             
         </div>
+      </div>
       );
     }
   }

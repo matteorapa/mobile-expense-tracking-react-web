@@ -14,9 +14,40 @@ export default class Preferences extends React.Component {
     this.state = {
         name: 'Matteo',
         surname: 'Rapa',
+        email: '2@2.2',
         currency: '$',
-        dob: '2000/05/01'
+        dob: '2000/05/01',
+        message: '',
+        error: ''
     }
+  }
+
+  componentDidMount(){
+    fetch('http://myvault.technology/api/users/details', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authentication.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.success) {
+                    this.setState({
+                        isLoading: false,
+                        dataSource: response.output,
+                    })
+                    console.log(response.output);
+                }
+                else {
+                    alert('there was an error loading details')
+                }
+
+            })
+            .catch((error) => {
+                console.log(error);
+            });
   }
 
   handleChange(event) {  
@@ -25,6 +56,36 @@ export default class Preferences extends React.Component {
 
   handleSubmit(event) {
     
+  }
+
+  async updateDetails(){
+    await fetch('http://myvault.technology/api/users/update', {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authentication.token,
+            },
+            body: JSON.stringify({
+                name: this.state.name,
+                surname: this.state.surname,
+                email: this.state.email,
+                dob: this.state.dob
+            })
+        })
+
+
+            .then(response => (response.json()))
+            .then((response) => {
+
+                if (response.success) {
+                    
+                }
+                else {
+                    
+                }
+            })
+            .catch(error => console.warn(error))
   }
 
     render() {

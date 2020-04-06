@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import authentication from '../authentication';
-import './component.css';
+
 
 class Signin extends React.Component {
 
@@ -73,11 +73,11 @@ class Signin extends React.Component {
           <div className="form-group">
               
               <h3>Sign In</h3>
-              <label htmlFor="exampleInputEmail3">Email address</label>
-              <input type="email" name="email" className="form-control" id="exampleInputEmail3" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.user_email} onChange={this.handleChange} required/>
+              <label htmlFor="email">Email address</label>
+              <input type="email" name="email" className="form-control" id="email" placeholder="Enter email" value={this.state.user_email} onChange={this.handleChange} required/>
               
-              <label htmlFor="exampleInputPassword1">Password</label>
-              <input type="password" name="password" className="form-control" id="exampleInputPassword1" placeholder="Password" value={this.state.user_password} onChange={this.handleChange} required/>
+              <label htmlFor="password">Password</label>
+              <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.user_password} onChange={this.handleChange} required/>
               <small className="form-text- text-danger text-center">{this.state.error}</small> 
           </div>
 

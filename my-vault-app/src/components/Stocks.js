@@ -1,9 +1,31 @@
 import React from 'react';
-import './component.css';
 
-export default class Sidebar extends React.Component {
 
-  
+export default class Stocks extends React.Component {
+
+  componentDidMount() {
+    // fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         stock: result.AAPL
+    //       });
+    //       //console.log(this.state.stock);
+    //     },
+
+    //     // Note: it's important to handle errors here
+    //     // instead of a catch() block so that we don't swallow
+    //     // exceptions from actual bugs in components.
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
+
+  }
     render() {
       return (
         <aside className="sidebar">
@@ -31,7 +53,7 @@ export default class Sidebar extends React.Component {
                     <span className="change negative">-1.2%</span>
                 </div>
            </div>
-           <button type="button" className="btn btn-outline-primary">Invest in Stocks</button>
+           
     
         </aside>
         

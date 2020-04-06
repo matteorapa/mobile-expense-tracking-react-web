@@ -2,7 +2,7 @@ import React from 'react';
 import authentication from '../authentication';
 import Header from '../components/Header';
 import {Radar, Bar, Polar} from 'react-chartjs-2';
-import Sidebar from '../components/Sidebar';
+import Stocks from '../components/Stocks';
 
 export default class Compare extends React.Component {
   
@@ -103,7 +103,7 @@ export default class Compare extends React.Component {
               <br /><br />
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <hr /><br /><br />
-              <Sidebar />
+              <Stocks />
               <br /><br />
           </div>
         </div>

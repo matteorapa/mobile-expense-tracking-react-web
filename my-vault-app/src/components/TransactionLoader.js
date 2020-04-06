@@ -169,7 +169,7 @@ class TransactionLoader extends React.Component {
         }else{
             return (
               <div>
-                  <div className="form-row fix-row">
+                  <div className="side-row">
                       <select id="filters" className="custom-select col-7" defaultValue="1" onChange={this.handleChange}>
                         <option value="1">Recent</option>
                         <option value="2">Weekly</option>
@@ -177,7 +177,7 @@ class TransactionLoader extends React.Component {
                         <option value="4">Yearly</option>
                       </select>
 
-                      <Link to="/addexpense"><button type="button" className="btn btn-light col"><i className="fas fa-money-check" ></i> Add transaction</button></Link><br /><br />
+                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-money-check" ></i> Add transaction</button></Link><br /><br />
                   </div><br />   
                   <div className="transactions">
                           {transactions}         

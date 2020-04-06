@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import authentication from '../authentication';
+import Back from '../components/Back'
 import './page.css';
 
 export default class AddTransaction extends React.Component {
@@ -113,7 +114,9 @@ export default class AddTransaction extends React.Component {
           <div>
             <Header />
             <div className="main-container focused">
+            <Back /><br /><br />
               <h2>Add Expense</h2><hr /><br />
+              
               <form id="add-expense-form"  onSubmit={this.handleSubmit} method="post">
               
                 <div className="form-group">
@@ -170,7 +173,7 @@ export default class AddTransaction extends React.Component {
                         </div>
                 </div>
                 <button type="submit" className="btn btn-light">Add Expense</button>
-                <span className="alert alert-danger">{this.state.error}</span>
+                <span className="text-danger">{this.state.error}</span>
 
               
               

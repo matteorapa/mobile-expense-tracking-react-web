@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import authentication from '../authentication';
 import PropTypes from "prop-types";
 import { withRouter } from "react-router";
-import './component.css';
+
 
 class LoginControl extends React.Component {
 

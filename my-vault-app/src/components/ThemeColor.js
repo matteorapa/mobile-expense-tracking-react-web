@@ -1,5 +1,5 @@
 import React from 'react';
-import './component.css';
+
 
 export default class ThemeColor extends React.Component {
     constructor(props){

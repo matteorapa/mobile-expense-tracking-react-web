@@ -12,16 +12,10 @@ export default class Welcome extends React.Component {
           <Header />
           <div className="main-container">
             
-            {/* <div className="wallpaper">
-              <h1>Take control of your finances.</h1>
-              
-            </div> */}
-            <div className="split">
-                <div className="left"></div>
-                <div className="right">
-                  <Signin />
-                </div>  
-            </div>
+            <div className="right">
+              <Signin />
+            </div>  
+            
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
               Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
               Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 

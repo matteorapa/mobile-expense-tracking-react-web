@@ -94,9 +94,9 @@ import { withRouter } from "react-router";
               <hr />
               <div className="details-container form-row">
                 <div className="form-group col-md-6">
-                  <label htmlFor="inputEmail4">Description</label>
-                  <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.transactionTitle} onChange={this.handleChange}  readOnly/>
-                        <small id="emailHelp" className="form-text text-muted">Short description about your expense.</small>
+                  <label htmlFor="desc">Description</label>
+                  <input type="text" name="desc" className="form-control" id="desc" aria-describedby="descHelp" placeholder="Expense description" value={location.state.expense.transactionTitle} onChange={this.handleChange}  readOnly/>
+                        <small id="descHelp" className="form-text text-muted">Short description about your expense.</small>
                 </div>
                 <div className="form-group col-md-6">
                   <label htmlFor="">Amount</label>
@@ -106,12 +106,12 @@ import { withRouter } from "react-router";
                     <div className="input-group-prepend">
                       <div className="input-group-text">{location.state.expense.transactionCurrency}</div>
                     </div>
-                    <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Expense description" value={location.state.expense.expenseCost} onChange={this.handleChange}  readOnly/>
+                    <input type="number" name="amount" className="form-control" id="amount"  placeholder="Expense description" value={location.state.expense.expenseCost} onChange={this.handleChange}  readOnly/>
                
                   </div>
                 </div>
               </div>
-              <div className="row">
+              <div className="side-row">
                 <button type="button" className="btn btn-light" onClick={this.handleEdit}>Edit</button>
                 <span className="tr-delete" onClick={(e) => this.handleDelete(e, location.state.expense.expenseid)}>Delete</span>
               </div>
@@ -119,7 +119,7 @@ import { withRouter } from "react-router";
               
             </form>
           </div>
-          </div>
+        </div>
 
         
       );
