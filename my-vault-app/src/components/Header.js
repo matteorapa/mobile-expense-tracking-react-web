@@ -18,7 +18,7 @@ const Header = (props) => {
               <div className="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul className="navbar-nav mr-auto">
                   <li className="nav-item active">
-                    <Link to="/" className="nav-link">Home <span className="sr-only">(current)</span></Link>
+                    <Link to="/" className="nav-link">Home</Link>
                   </li>
                   <li className="nav-item">
                     <Link to="/compare" className="nav-link">Compare Yourself</Link>    
@@ -27,7 +27,7 @@ const Header = (props) => {
                     <Link to="/vault" className="nav-link">My Finance</Link>    
                   </li>
                   <li className="nav-item">
-                    <Link to="/account" className="nav-link">Account</Link>    
+                    <Link to="/account" className="nav-link">My Account</Link>    
                   </li>
                   <li className="nav-item">
                     <DarkMode />

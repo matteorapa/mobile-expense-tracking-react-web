@@ -132,9 +132,9 @@ export default class AddTransaction extends React.Component {
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
                                         <select className="currency-box" id="currency" name="currency" defaultValue="EUR" value={this.state.currency} onChange={this.handleChange} required>
-                                            <option value="EUR">EUR</option>
-                                            <option value="USD">USD</option>
-                                            <option value="PND">PND</option>
+                                            <option value="eur">EUR</option>
+                                            <option value="usd">USD</option>
+                                            <option value="pnd">PND</option>
                                         </select>
                                     </div>
                                 </div>
@@ -174,9 +174,6 @@ export default class AddTransaction extends React.Component {
                 </div>
                 <button type="submit" className="btn btn-light">Add Expense</button>
                 <span className="text-danger">{this.state.error}</span>
-
-              
-              
             </form>
               
             </div>

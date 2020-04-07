@@ -57,9 +57,7 @@ p{
     background-color: var(--background-color);
 }
 
-.tr-date{
-    width: 10px;
-}
+
 
 .main-container{
     padding: 32px;
@@ -102,7 +100,7 @@ p{
 }
 
 .neu {
-    box-shadow:  20px 20px 40px var(--shadow-color);
+    box-shadow:  20px 20px 30px var(--shadow-color);
 }
 
 .category-container{
@@ -267,8 +265,25 @@ p{
 
     .tr-options{
         color: var(--light-color);
+        flex: 1;
     }
 
+    .tr-date{
+        flex: 1;
+    }
+
+    .tr-message{
+        flex: 2;
+    }
+
+    .tr-amount{
+        flex: 1;
+        text-align: right;
+    }
+
+    .upper{
+        text-transform: uppercase;
+    }
     .loading{
         background-color: var(--shadow-color);
         border-radius: 3px;
@@ -316,6 +331,10 @@ p{
 
     #signin{
         box-shadow: unset;
+    }
+
+    .main-container{
+        padding: 12px;
     }
 }
 

@@ -12,7 +12,6 @@ class Transaction extends React.Component {
     this.state = {
       localeDate: date,
     }
-
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -33,14 +32,27 @@ class Transaction extends React.Component {
 
 
     render() {
+      let symbol = '$';
+      switch(this.props.expense.transactionCurrency){
+        case "eur":
+          symbol = '€';
+          break;
+        case "usd":
+          symbol = '$';
+          break;
+        case "pnd":
+          symbol = '£';
+          break;
+
+      }
 
       return (
 
           <div className="transaction expense" onClick={this.handleClick}>
             <span className="tr-options"><i className="fas fa-ellipsis-v"></i></span>
             <span className="tr-date">{this.state.localeDate}</span>
-            <span className="tr-message">{this.props.expense.transactionTitle}</span>
-            <span className="tr-amount">{this.props.expense.expenseCost}</span>
+            <span className="tr-message"><strong>{this.props.expense.transactionTitle}</strong></span>
+            <span className="tr-amount">{[symbol, this.props.expense.expenseCost]}</span>
         </div>
 
       );

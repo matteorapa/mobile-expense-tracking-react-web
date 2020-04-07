@@ -104,7 +104,7 @@ import { withRouter } from "react-router";
 
                   <div className="input-group mb-2">
                     <div className="input-group-prepend">
-                      <div className="input-group-text">{location.state.expense.transactionCurrency}</div>
+                      <div className="input-group-text upper">{location.state.expense.transactionCurrency}</div>
                     </div>
                     <input type="number" name="amount" className="form-control" id="amount"  placeholder="Expense description" value={location.state.expense.expenseCost} onChange={this.handleChange}  readOnly/>
                

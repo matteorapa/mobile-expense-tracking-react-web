@@ -177,7 +177,7 @@ class TransactionLoader extends React.Component {
                         <option value="4">Yearly</option>
                       </select>
 
-                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-money-check" ></i> Add transaction</button></Link><br /><br />
+                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-plus"></i> Add</button></Link><br /><br />
                   </div><br />   
                   <div className="transactions">
                           {transactions}         
