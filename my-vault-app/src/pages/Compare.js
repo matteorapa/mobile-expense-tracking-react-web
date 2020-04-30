@@ -2,7 +2,8 @@ import React from 'react';
 import authentication from '../authentication';
 import Header from '../components/Header';
 import {Radar, Bar, Polar, Line } from 'react-chartjs-2';
-import PieChart from '../components/PieChart'
+import PieChart from '../components/PieChart';
+import Stocks from '../components/Stocks'
 
 export default class Compare extends React.Component {
   

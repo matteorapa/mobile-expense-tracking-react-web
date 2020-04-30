@@ -12,6 +12,8 @@ body {
 
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: background-color 2s;
+    transition: color 1s;
 }
 
 Link {
@@ -55,6 +57,14 @@ p{
 .expense{
     border: 1px solid var(--shadow-color);
     background-color: var(--background-color);
+    transition: all .2s ease-in-out;
+}
+
+.expense:hover{
+    border: 1px double var(--theme-color);
+    margin: 16px;
+    transform: scale(1.1);
+    
 }
 
 

@@ -1,10 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
-import './component.css';
 import authentication from '../authentication';
-=======
-
->>>>>>> f33c6e5edb58017907ad98223a33259ccfd52663
 
 export default class DarkMode extends React.Component {
 

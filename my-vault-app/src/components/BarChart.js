@@ -1,7 +1,6 @@
 
 
 import React from 'react';
-import './component.css';
 import authentication from '../authentication'
 import {Bar} from 'react-chartjs-2';
 

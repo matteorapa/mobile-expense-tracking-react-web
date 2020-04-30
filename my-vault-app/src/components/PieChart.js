@@ -1,5 +1,4 @@
 import React from 'react';
-import './component.css';
 import authentication from '../authentication'
 import {Pie} from 'react-chartjs-2';
 
@@ -19,7 +18,7 @@ export default class PieChart extends React.Component {
     }
 
      componentDidMount() {
-        fetch('http://myvault.technology/api/analytics/categoryTotals/m/', {
+        fetch('http://myvault.technology/api/analytics/categoryTotals/y/', {
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -62,8 +61,7 @@ export default class PieChart extends React.Component {
     
 
     render() {
-        console.log(pieNumbers)
-
+        
         this.data = {
             labels: pieLabels,
             datasets: [{

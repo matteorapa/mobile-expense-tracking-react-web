@@ -134,7 +134,7 @@ export default class AddTransaction extends React.Component {
                                         <select className="currency-box" id="currency" name="currency" defaultValue="EUR" value={this.state.currency} onChange={this.handleChange} required>
                                             <option value="eur">EUR</option>
                                             <option value="usd">USD</option>
-                                            <option value="pnd">PND</option>
+                                            <option value="gbp">GBP</option>
                                         </select>
                                     </div>
                                 </div>
