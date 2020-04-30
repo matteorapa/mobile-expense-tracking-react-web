@@ -1,14 +1,24 @@
 import React from 'react';
 import authentication from '../authentication';
 import Header from '../components/Header';
-import {Radar, Bar, Polar} from 'react-chartjs-2';
-import Stocks from '../components/Stocks';
+import {Radar, Bar, Polar, Line } from 'react-chartjs-2';
+import PieChart from '../components/PieChart'
 
 export default class Compare extends React.Component {
   
   
     constructor(props){
       super(props);
+      this.state = {
+        isLoading: true,
+        pieData: [],
+        lineData: [],
+        barData: [],
+        array: [],
+        BarArray: [],
+        isClicked: 'all'
+      }
+
       this.data = {
         labels: ['Food & beverage', 'Drinking', 'Entertainment', 'Shopping', 'Transport', 'Health', 'Utiities'],
         datasets: [
@@ -78,10 +88,6 @@ export default class Compare extends React.Component {
       };
     }
     
-    componentDidMount(){
-
-     
-    }
 
     render() {
       return (
@@ -89,6 +95,7 @@ export default class Compare extends React.Component {
            <Header />
           <div className="main-container focused">
               <br /><br />
+              <PieChart />
               <h1>Your monthly spending monthly</h1><br />
               <Bar data={this.bar} options={{ maintainAspectRatio: true }} height={60}/>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>

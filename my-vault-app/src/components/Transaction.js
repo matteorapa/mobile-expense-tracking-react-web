@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 
 class Transaction extends React.Component {
+
   constructor(props){
     
     super(props);
@@ -11,8 +12,45 @@ class Transaction extends React.Component {
 
     this.state = {
       localeDate: date,
+      currency: '€',
     }
     this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    let currency = this.props.expense.transactionCurrency;
+    
+    switch(currency){
+      case 'usd':
+        this.setState({
+          currency: '$'
+        });
+        
+        break;
+
+      case 'eur':
+        this.setState({
+          currency: '€'
+        });
+        
+          break;
+
+      case 'gbp':
+        this.setState({
+          currency: '£'
+        });
+      
+       
+          break;
+      default:
+        this.setState({
+          currency: '€'
+        });
+        
+
+        break;
+        
+    }
   }
 
   static propTypes = {
@@ -51,8 +89,11 @@ class Transaction extends React.Component {
           <div className="transaction expense" onClick={this.handleClick}>
             <span className="tr-options"><i className="fas fa-ellipsis-v"></i></span>
             <span className="tr-date">{this.state.localeDate}</span>
-            <span className="tr-message"><strong>{this.props.expense.transactionTitle}</strong></span>
-            <span className="tr-amount">{[symbol, this.props.expense.expenseCost]}</span>
+            <span className="tr-message">{this.props.expense.transactionTitle}</span>
+            <span className="tr-amount">
+              <span>{this.state.currency}</span>
+              <span>{this.props.expense.expenseCost}</span>
+              </span>
         </div>
 
       );

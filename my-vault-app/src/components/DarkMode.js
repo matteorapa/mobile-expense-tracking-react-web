@@ -1,45 +1,125 @@
 import React from 'react';
+<<<<<<< HEAD
+import './component.css';
+import authentication from '../authentication';
+=======
 
+>>>>>>> f33c6e5edb58017907ad98223a33259ccfd52663
 
 export default class DarkMode extends React.Component {
 
     constructor(props){
         super(props);
         this.state = {
-            darkMode : true
+            darkMode : 'white',
+            themeColor : 'purple'
         }
         this.toggleDarkMode = this.toggleDarkMode.bind(this);
     }
 
-    componentDidMount(){
+     async componentDidMount(){
         //api request to get the dark mode state, and set the state accordingly
+        if(authentication.isAuthenticated()){
+            await fetch('http://myvault.technology/api/pref', {
+            method: 'GET',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authentication.token,
+            },
+        })
+            .then((response) => response.json())
+            .then((response) => {
+                if (response.success) {
+                    //console.log(response.output);
+                    
+                    this.setState(function() {
+                        return {
+                            themeColor: response.output[0].colour,
+                            darkMode: response.output[0].dark
+                        };
+                      });
+                }
+                else {
+                    console.log('There was an error loading theme settings from darkmode component');
+                    console.log(response.output);
+                }
 
-        if(this.state.darkMode){
+            })
+
+            .catch((error) => {
+                console.log(error);
+            });
+        }
+        
+
+        if(this.state.darkMode === 'grey'){
             this.dark();
         }else {
             this.light();
         }
-
 
     }
 
-    toggleDarkMode(){  
+    async updateTheme(cb) {
 
-        if(this.state.darkMode){
-            //switch to light theme
-            this.setState({
-                darkMode : false
-            });
-            this.light();
+        await fetch('http://myvault.technology/api/pref', {
+            method: 'PUT',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + authentication.token,
+            },
+            body: JSON.stringify({
+                colour: this.state.themeColor,
+                dark: this.state.darkMode,
+            })
+        })
+      
+            .then(response => (response.json()))
+            .then((response) => {
+      
+                if (response.success) {
+                  cb();
+                }
+                else {
+                    console.log('Error when updating theme!')
+                    
+                }
+            })
+            .catch(error => console.log(error))
+      
+      }
 
-            
+    async toggleDarkMode(){  
+        
+        if(this.state.darkMode === 'grey'){
+            this.setState(function() {
+                return {
+                  darkMode: 'white'
+                };
+              });
         }else {
-           //switch to dark theme
-            this.setState({
-                darkMode : true
-            });
-            this.dark();
+            this.setState(function() {
+                return {
+                  darkMode: 'grey'
+                };
+              });
         }
+      
+
+        if(authentication.isAuthenticated()){
+            await this.updateTheme(() => { 
+                console.log('DarkMode switched successfully!')
+                if(this.state.darkMode === 'grey'){
+                    this.dark();
+                }else {
+                    this.light();
+                }
+              });
+        }
+
+        
     
     }
 
@@ -64,17 +144,21 @@ export default class DarkMode extends React.Component {
     }
 
     render() {
-
-        if(this.state.darkMode){
-            return (
-                <button type="button" className="btn btn-outline-dark" onClick={this.toggleDarkMode}>Dark Mode <i className="far fa-moon"></i></button>
-              );
+        if(authentication.isAuthenticated()){
+            if(this.state.darkMode){
+                return (
+                    <button type="button" className="btn btn-dark side-margin" onClick={this.toggleDarkMode}>Dark Mode <i className="far fa-moon"></i></button>
+                  );
+            }else {
+                return (
+                    <button type="button" className="btn btn-light side-margin" onClick={this.toggleDarkMode}>Light Mode <i className="far fa-lightbulb"></i></button>
+                    
+                  );
+            }
         }else {
-            return (
-                <button type="button" className="btn btn-light" onClick={this.toggleDarkMode}>Light Mode <i className="far fa-lightbulb"></i></button>
-                
-              );
+            return ( <span></span>);
         }
+        
 
       
     }

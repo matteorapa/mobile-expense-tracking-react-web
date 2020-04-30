@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router";
 import authentication from '../authentication';
 import {Link} from "react-router-dom";
+import BarChart from './BarChart';
+import PieChart from './PieChart';
 
 
 class TransactionLoader extends React.Component {
@@ -169,6 +171,10 @@ class TransactionLoader extends React.Component {
         }else{
             return (
               <div>
+                  <div className="row">
+                      <BarChart />
+                      <PieChart />
+                  </div>
                   <div className="side-row">
                       <select id="filters" className="custom-select col-7" defaultValue="1" onChange={this.handleChange}>
                         <option value="1">Recent</option>

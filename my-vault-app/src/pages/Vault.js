@@ -1,6 +1,5 @@
 import React from 'react';
 import './page.css';
-import Stocks from '../components/Stocks';
 import TransactionLoader from '../components/TransactionLoader';
 import Header from '../components/Header';
 
