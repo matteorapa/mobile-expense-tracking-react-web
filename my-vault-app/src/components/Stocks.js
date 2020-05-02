@@ -4,26 +4,23 @@ import React from 'react';
 export default class Stocks extends React.Component {
 
   componentDidMount() {
-    // fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
-    //   .then(res => res.json())
-    //   .then(
-    //     (result) => {
-    //       this.setState({
-    //         stock: result.AAPL
-    //       });
-    //       //console.log(this.state.stock);
-    //     },
+    fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            stock: result
+          });
+          console.log(this.state.stock);
+        },
 
-    //     // Note: it's important to handle errors here
-    //     // instead of a catch() block so that we don't swallow
-    //     // exceptions from actual bugs in components.
-    //     (error) => {
-    //       this.setState({
-    //         isLoaded: true,
-    //         error
-    //       });
-    //     }
-    //   )
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          });
+        }
+      )
 
   }
     render() {

@@ -60,10 +60,10 @@ class Transaction extends React.Component {
   };
 
   handleClick(){
-   
     const {history} = this.props;
     history.push({
       pathname: '/expense',
+
       state: { expense: this.props.expense }
     });
   }

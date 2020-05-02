@@ -2,6 +2,7 @@ import React from 'react';
 import authentication from '../authentication';
 import Header from '../components/Header';
 import './page.css';
+import DarkMode from '../components/DarkMode';
 
 export default class Preferences extends React.Component {
   
@@ -10,6 +11,9 @@ export default class Preferences extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleThemeSubmit = this.handleThemeSubmit.bind(this);
+    this.handleModal = this.handleModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+    this.handleCloseAccount = this.handleCloseAccount.bind(this);
     this.state = {
       name: '', surname: '', currency: '$', dob: '', message: '', error: '', color: '#000000', dark: 'white'
   }
@@ -84,7 +88,6 @@ export default class Preferences extends React.Component {
                 console.log(error);
             });
 }
-
 
 async updateAccount(cb) {
 
@@ -184,8 +187,6 @@ async updateTheme(cb) {
     }
   }
 
-  
-
   async handleSubmit(event) {
     event.preventDefault();
     let error = true;
@@ -224,7 +225,38 @@ async updateTheme(cb) {
 
   }
 
-    render() {
+  handleModal(event){
+    var modal = document.getElementById("confirmClose");
+    modal.style.display = "block";  
+    
+  }
+
+  handleCloseModal(event){
+    var modal = document.getElementById("confirmClose");
+    modal.style.display = "none";
+  }
+
+  handleCloseAccount(event){
+    fetch('http://myvault.technology/api/users', {
+            method: 'DELETE',
+            headers: {
+                Accept: 'application/json',
+                'Authorization': 'Bearer ' + authentication.token,
+            }
+        })
+            .then(response =>
+                response.json().then(json => {
+                  const {history} = this.props;
+                  authentication.logout(() => { history.push('/') });
+                  
+                    return json;
+                })
+            )
+            .catch(error => console.warn(error))
+            
+  }
+
+  render() {
       return (
         <div>
            <Header />
@@ -234,8 +266,6 @@ async updateTheme(cb) {
                   <span className="text-danger">{this.state.error}</span>
                 </span>
                 <h2 className="text-center">My Account</h2>
-
-                
                 <form id="editDetails" onSubmit={this.handleSubmit} method="post">
                 <h3>Personal</h3><hr />
                 <div className="form-group">
@@ -261,11 +291,7 @@ async updateTheme(cb) {
                     <input type="email" name="email" className="form-control" id="email" placeholder="Enter email" value={this.state.email} onChange={this.handleChange} required/>
 
                 </div>
-                  <div className="form-group">
-                    <label htmlFor="dob">Date of Birth</label>
-                    <input type="text" name="dob" className="form-control" id="dob" placeholder="Date of Birth" value={this.state.dob} onChange={this.handleChange} required/>
-
-                </div>
+                
                   <button type="submit" className="btn btn-light">Save details</button>
                 </form>
 
@@ -273,13 +299,10 @@ async updateTheme(cb) {
                 <br /><br />
                 <form id="editDetails" onSubmit={this.handleThemeSubmit} method="post">
                   <h3>Preferences</h3><hr />
-                  <div className="form-group">
-                        <label htmlFor="firstname">Currency</label>
-                        <input type="text" name="currency" id="currency" className="form-control" placeholder="Default currency" value={this.state.currency} onChange={this.handleChange} />
-                  </div>
+                  <DarkMode /><br /><br />
                   
                   <div className="form-group">
-                        <label htmlFor="firstname">Theme Color {this.state.color}</label><br />
+                        <label htmlFor="firstname">Theme Color <small>{this.state.color}</small></label><br />
                         <input type="color" className="color-picker" id="themecolor" name="color" value={this.state.color}  onChange={this.handleChange} required/>
                   </div>
                   <button type="submit" className="btn btn-light">Save Preferences</button>
@@ -288,8 +311,18 @@ async updateTheme(cb) {
                 
                 <br /><br />
                 <div className="column">
-                  <button type="button" className="btn btn-outline-danger" onClick={this.handleClose}>Close account</button>
+                  <button type="button" className="btn btn-outline-danger" onClick={this.handleModal}>Close account</button>
                   <small>This action is not reversible. All your data will be deleted.</small>
+                  
+                  <div className="modal" id="confirmClose">
+                    <div class="modal-content">
+                      <span class="close" onClick={this.handleCloseModal}>&times;</span>
+                      <p>Are you sure you want to close your account?</p>
+                       <button type="button" className="btn btn-danger" onClick={this.handleCloseAccount}>Close account</button>
+                        
+                    </div>
+                  </div>
+
                 </div>
             </div>
         </div>

@@ -75,6 +75,57 @@ import { withRouter } from "react-router";
       let date = new Date(location.state.expense.transactionDate);
       date = date.toLocaleDateString();
 
+      let categoryIcon = 'fas fa-random'
+      switch(location.state.expense.expenseType){
+        case 'Groceries':
+            categoryIcon = 'fas fa-shopping-basket'
+          break;
+
+          case 'Food':
+            categoryIcon = 'fas fa-utensils'
+          break;
+
+          case 'Shopping':
+            categoryIcon = 'fas fa-tshirt'
+          break;
+
+          case 'Travel':
+            categoryIcon = 'fas fa-route'
+          break;
+
+          case 'Leisure':
+            categoryIcon = 'far fa-smile-wink'
+          break;
+
+          case 'Health':
+            categoryIcon = 'fas fa-heartbeat'
+          break;
+
+          case 'Home':
+            categoryIcon = 'fas fa-home'
+          break;
+
+          case 'Tech':
+            categoryIcon = 'fas fa-tv'
+          break;
+
+          case 'Utilities':
+            categoryIcon = 'fas fa-hand-holding-water'
+          break;
+
+          case 'Bills':
+            categoryIcon = 'fas fa-file-invoice'
+          break;
+
+          case 'Other':
+            categoryIcon = 'fas fa-random'
+          break;  
+
+          default:
+            categoryIcon = 'fas fa-random'
+            break;
+      }
+
       
       return (
         <div>
@@ -85,11 +136,13 @@ import { withRouter } from "react-router";
             <form id="expense-edit-form"  onSubmit={this.handleSubmit} method="post">
               
               <div className="category-container neu">
-                <i className="fas fa-tshirt"></i>
-                <span>Shopping</span>
+                <i className={categoryIcon} ></i>
+                <span>{location.state.expense.expenseType}</span>
               </div>
 
-              <div className="payment-container">Paid with <i className="fab fa-cc-apple-pay payment-icon"></i></div>
+              <div className="payment-container">Paid with {location.state.expense.transactionPlace}</div>
+
+
               <div className="date-container">{date}</div>
               <hr />
               <div className="details-container form-row">

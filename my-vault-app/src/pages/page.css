@@ -13,7 +13,7 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 2s;
-    transition: color 1s;
+    transition: color 0.3s;
 }
 
 Link {
@@ -177,7 +177,6 @@ p{
 .column {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .currency-box{
@@ -333,6 +332,48 @@ p{
        width: 50%;
         margin: 32px 0px;
     }
+
+    .modal {
+        display: none;
+        position: fixed; 
+        padding-top: 300px; 
+        left: 0;
+        top: 0;
+        width: 100%;
+        background-color: rgba(0,0,0,0.7);
+      }
+
+      .modal-message {
+        display: none;
+        position: fixed; 
+        padding-top: 100px; 
+        right: 0;
+        top: 0;
+        
+      }
+
+      .modal-content-message {
+        color: var(--text-color);
+        background-color: var(--background-color);
+        border: 1px solid var(--shadow-color);
+        padding: 16px;
+      }
+
+      .close {
+        color: #888888;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+      }
+
+      .modal-content {
+        color: var(--text-color);
+        background-color: var(--background-color);
+        border: 1px solid var(--shadow-color);
+        margin: auto;
+        padding: 32px;
+        width: 60%;
+      }
 
 
 

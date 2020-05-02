@@ -13,7 +13,7 @@ export default class AddTransaction extends React.Component {
             category: '',
             amount: '',
             payment: '',
-            currency: '',
+            currency: 'eur',
             error: '',
             online: false,
         }
@@ -68,7 +68,7 @@ export default class AddTransaction extends React.Component {
 
     async handleSubmit(event) { 
         event.preventDefault();
-        console.log('Called handle submit');
+        
         await fetch('http://myvault.technology/api/expenses', {
             method: 'POST',
             headers: {
@@ -131,7 +131,7 @@ export default class AddTransaction extends React.Component {
                             <div className="input-group mb-2">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <select className="currency-box" id="currency" name="currency" defaultValue="EUR" value={this.state.currency} onChange={this.handleChange} required>
+                                        <select className="currency-box" id="currency" name="currency" defaultValue="eur" value={this.state.currency} onChange={this.handleChange} required>
                                             <option value="eur">EUR</option>
                                             <option value="usd">USD</option>
                                             <option value="gbp">GBP</option>
@@ -151,8 +151,14 @@ export default class AddTransaction extends React.Component {
                         <option value="Shopping">Shopping</option>
                         <option value="Health">Health</option>
                         <option value="Utilities">Utilities</option>
-                        <option value="Insurance">Insurance</option>
-                        <option value="Transport">Transport</option>
+                        <option value="Transport">Other</option>
+                        <option value="Groceries">Groceries</option>
+                        <option value="Food">Food</option>
+                        <option value="Travel">Travel</option>
+                        <option value="Leisure">Leisure</option>
+                        <option value="Home">Home</option>
+                        <option value="Tech">Tech</option>
+                        <option value="Leisure">Bills</option>
                     </select>
                 </div>
                 
@@ -162,8 +168,6 @@ export default class AddTransaction extends React.Component {
                         <select className="form-control" id="payment" name="payment" value={this.state.payment} onChange={this.handleChange}>
                             <option>Cash</option>
                             <option>Card</option>
-                            <option>Apple Pay</option>
-                            <option>Paypal</option>
                         </select><br />
 
                         <div className="form-check">

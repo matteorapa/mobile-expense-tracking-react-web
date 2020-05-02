@@ -88,8 +88,12 @@ export default class Account extends React.Component {
       let p = this.state.password;
 
       authentication.createUser(n, s, d, e ,p, () => {
+
+          
           authentication.login(e , p, () => {
-            this.state.props.history.push('/vault');
+            
+            const {history} = this.props;
+            history.push('/vault');
           })
       });
 

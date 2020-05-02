@@ -82,7 +82,9 @@ export default class LineChart extends React.Component {
 
         if(this.state.isLoading){
             return (
-                <div>Loading...</div>
+              <div className="loading">
+              <div className="spinner-grow text-muted"></div>
+          </div>
               );
         }else {
             return (

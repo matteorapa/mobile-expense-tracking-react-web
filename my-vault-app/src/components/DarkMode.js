@@ -26,7 +26,6 @@ export default class DarkMode extends React.Component {
             .then((response) => response.json())
             .then((response) => {
                 if (response.success) {
-                    //console.log(response.output);
                     
                     this.setState(function() {
                         return {
@@ -34,6 +33,8 @@ export default class DarkMode extends React.Component {
                             darkMode: response.output[0].dark
                         };
                       });
+
+                      
                 }
                 else {
                     console.log('There was an error loading theme settings from darkmode component');
@@ -56,8 +57,9 @@ export default class DarkMode extends React.Component {
 
     }
 
-    async updateTheme(cb) {
+    async updateTheme(mode, cb) {
 
+        
         await fetch('http://myvault.technology/api/pref', {
             method: 'PUT',
             headers: {
@@ -67,7 +69,7 @@ export default class DarkMode extends React.Component {
             },
             body: JSON.stringify({
                 colour: this.state.themeColor,
-                dark: this.state.darkMode,
+                dark: mode,
             })
         })
       
@@ -89,33 +91,23 @@ export default class DarkMode extends React.Component {
     async toggleDarkMode(){  
         
         if(this.state.darkMode === 'grey'){
-            this.setState(function() {
-                return {
+            this.setState({
                   darkMode: 'white'
-                };
-              });
+              })
+
+            await this.updateTheme('white', () => {
+                  console.log('Switched to light mode')
+            })
+            this.light();
         }else {
-            this.setState(function() {
-                return {
-                  darkMode: 'grey'
-                };
-              });
+            this.setState({
+                darkMode: 'grey'
+            })
+            await this.updateTheme('grey', () => {
+                console.log('Switched to dark mode')
+            })
+            this.dark();
         }
-      
-
-        if(authentication.isAuthenticated()){
-            await this.updateTheme(() => { 
-                console.log('DarkMode switched successfully!')
-                if(this.state.darkMode === 'grey'){
-                    this.dark();
-                }else {
-                    this.light();
-                }
-              });
-        }
-
-        
-    
     }
 
     light(){
@@ -140,7 +132,7 @@ export default class DarkMode extends React.Component {
 
     render() {
         if(authentication.isAuthenticated()){
-            if(this.state.darkMode){
+            if(this.state.darkMode === 'grey'){
                 return (
                     <button type="button" className="btn btn-dark side-margin" onClick={this.toggleDarkMode}>Dark Mode <i className="far fa-moon"></i></button>
                   );

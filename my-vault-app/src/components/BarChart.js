@@ -16,7 +16,7 @@ export default class BarChart extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch('http://myvault.technology/api/analytics/MonthlyTotals', {
+        await fetch('http://myvault.technology/api/analytics/MonthlyTotalsEUR', {
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -27,7 +27,9 @@ export default class BarChart extends React.Component {
           .then((response) => response.json())
           .then((response) => {
             if (response.success) {
-                for (let i = 0; i < 12; i++) {
+
+              
+                for (let i = 0; i < response.datasets.length; i++) {
                   temp.push(parseInt(response.datasets[i].data));
                 }
 
@@ -44,6 +46,7 @@ export default class BarChart extends React.Component {
           .catch((error) => {
             console.log(error);
           });
+
     }
   
     
@@ -65,17 +68,27 @@ export default class BarChart extends React.Component {
             ]
           };
 
-        if(this.state.isLoading){
+        
+
+          temp = [0];
+
+          if(this.state.isLoading){
             return (
-                <div>Loading...</div>
+              <div className="loading">
+              <div className="spinner-grow text-muted"></div>
+          </div>
               );
         }else {
-            return (
-                <div className="chart">
-                  <Bar data={this.data} />
-              </div>
-              );
-        }
+              return (
+                  <div className="chart">
+                    <Bar data={this.data} />
+                </div>
+                );
+
+              }
+
+          
+        
       
     }
   }

@@ -20,7 +20,6 @@ class TransactionLoader extends React.Component {
       }
       this.addTransaction = this.addTransaction.bind(this);
       this.handleChange = this.handleChange.bind(this);
-      this.getAllExpenses = this.getAllExpenses.bind(this);
       
     }
 
@@ -30,9 +29,32 @@ class TransactionLoader extends React.Component {
       history: PropTypes.object.isRequired
     };
  
-    componentDidMount() {
+    componentDidMount(type) {
+
+      if(type){
+        switch(type){
+          case 'all': 
+          type = 'http://myvault.technology/api/expenses/'
+          break;
+
+          case 'weekly': 
+          type = 'http://myvault.technology/api/expenses/w'
+          break;
+
+          case 'monthly': 
+          type = 'http://myvault.technology/api/expenses/m'
+          break;
+
+          case 'yearly': 
+          type = 'http://myvault.technology/api/expenses/y'
+          break;
+        }
+
+      }else{
+        type = 'http://myvault.technology/api/expenses/'
+      }
       
-        fetch(this.state.call, {
+        fetch(type, {
           method: 'GET',
           headers: {
             Accept: 'application/json',
@@ -97,60 +119,24 @@ class TransactionLoader extends React.Component {
         .catch(error => console.warn(error))
     }
 
-    getAllExpenses() {
-        this.setState({
-          call: 'http://myvault.technology/api/expenses/'
-        });
-        
-        this.componentDidMount();
-    
-      }
-    
-      getWeekExpenses() {
-       
-        this.setState({
-          call: 'http://myvault.technology/api/expensesw/w'
-        });
-        
-        this.componentDidMount();
-    
-      }
-      getMonthExpenses() {
-        this.setState({
-          call: 'http://myvault.technology/api/expenses/m'
-        });
-        
-        this.componentDidMount();
-    
-      }
-    
-      getYearExpenses() {
-        this.setState({
-          call: 'http://myvault.technology/api/expenses/y'
-        });
-        
-        this.componentDidMount();
-    
-      }
 
-      handleChange(event){
-        switch(event.target.value){
-          case '1':
-            this.getAllExpenses();
-            break;
-          case '2':
-            this.getWeekExpenses();
-            break;
-          case '3':
-            this.getMonthExpenses();
-            break;
-          case '4':
-           this.getYearExpenses();
-            break;
+      handleChange(event, type){
+        this.componentDidMount(type);
 
-            default:
-              break;
-        }
+        let b1 = document.getElementById('all');
+        b1.style.borderColor = 'unset';
+
+        let b2 = document.getElementById('weekly');
+        b2.style.borderColor = 'unset';
+
+        let b3 = document.getElementById('monthly');
+        b3.style.borderColor = 'unset';
+
+        let b4 = document.getElementById('yearly');
+        b4.style.borderColor = 'unset';
+
+        let pressed = document.getElementById(type);
+        pressed.style.borderColor = 'var(--theme-color)';
       }
   
     render() {
@@ -176,14 +162,15 @@ class TransactionLoader extends React.Component {
                       <PieChart />
                   </div>
                   <div className="side-row">
-                      <select id="filters" className="custom-select col-7" defaultValue="1" onChange={this.handleChange}>
-                        <option value="1">Recent</option>
-                        <option value="2">Weekly</option>
-                        <option value="3">Monthly</option>
-                        <option value="4">Yearly</option>
-                      </select>
 
-                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-plus"></i> Add</button></Link><br /><br />
+                      <div class="btn-group" role="group" aria-label="Expenses filters">
+                        <button type="button" id="all" className="btn btn-light filter" onClick={() => this.handleChange(this, 'all')}>All</button>
+                        <button type="button" id="weekly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'weekly')} >Weekly</button>
+                        <button type="button" id="monthly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'monthly')} >Monthly</button>
+                        <button type="button" id="yearly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'yearly')} >Yearly</button>
+                      </div>
+
+                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-plus"></i> Add expense</button></Link><br /><br />
                   </div><br />   
                   <div className="transactions">
                           {transactions}         

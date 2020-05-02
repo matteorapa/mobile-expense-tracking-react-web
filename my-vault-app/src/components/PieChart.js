@@ -17,8 +17,8 @@ export default class PieChart extends React.Component {
         }
     }
 
-     componentDidMount() {
-        fetch('http://myvault.technology/api/analytics/categoryTotals/y/', {
+     async componentDidMount() {
+        await fetch('http://myvault.technology/api/analytics/CategoryTotalsEUR/y', {
             method: 'GET',
             headers: {
               Accept: 'application/json',
@@ -37,10 +37,6 @@ export default class PieChart extends React.Component {
                     pieColors.push(response.pieData[i].color);
                     
                 }
-
-                // console.log(pieNumbers)
-                // console.log(pieLabels)
-                // console.log(pieColors)
 
                   this.setState({
                     isLoading: false,
@@ -71,9 +67,15 @@ export default class PieChart extends React.Component {
             }]
         };
 
+        pieNumbers = [];
+        pieLabels = [];
+        pieColors = [];
+
         if(this.state.isLoading){
             return (
-                <div>Loading...</div>
+              <div className="loading">
+              <div className="spinner-grow text-muted"></div>
+          </div>
               );
         }else {
             return (
@@ -81,7 +83,10 @@ export default class PieChart extends React.Component {
                   <Pie data={this.data} />
               </div>
               );
+              
         }
+
+        
       
     }
   }
