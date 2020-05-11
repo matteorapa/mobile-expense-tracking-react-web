@@ -16,10 +16,12 @@ class TransactionLoader extends React.Component {
       this.state = {
         call: 'http://myvault.technology/api/expenses/',
         isLoading: true,
-        dataSource : []
+        dataSource : [],
+        filter: "none",
       }
       this.addTransaction = this.addTransaction.bind(this);
       this.handleChange = this.handleChange.bind(this);
+      this.handleFilter = this.handleFilter.bind(this);
       
     }
 
@@ -31,7 +33,7 @@ class TransactionLoader extends React.Component {
  
     componentDidMount(type) {
 
-      if(type){
+      if(type){ //check if type is being passed
         switch(type){
           case 'all': 
           type = 'http://myvault.technology/api/expenses/'
@@ -138,13 +140,84 @@ class TransactionLoader extends React.Component {
         let pressed = document.getElementById(type);
         pressed.style.borderColor = 'var(--theme-color)';
       }
+
+
+      handleFilter(event, category){
+        this.setState({
+          filter: category,
+        });
+        //this.componentDidMount();
+        this.forceUpdate()
+      }
   
     render() {
 
         const {history} = this.props;
 
         let data = this.state.dataSource;
-        let transactions = data.map((e) => {return (<Transaction   expense={e} /> )} ); 
+        let transactions = data.map((e) => {return (<Transaction   expense={e} filter={this.state.filter}/> )} ); 
+
+        let  currentFilter = "Filter";
+        let categoryIcon = "fas fa-funnel-dollar";
+        if(this.state.filter === "none"){
+          currentFilter = "Filter";
+          categoryIcon = "fas fa-funnel-dollar";
+        }else {
+          currentFilter = this.state.filter;
+
+          switch(this.state.filter){
+            case 'Groceries':
+                categoryIcon = 'fas fa-shopping-basket'
+              break;
+    
+              case 'Food':
+                categoryIcon = 'fas fa-utensils'
+              break;
+    
+              case 'Shopping':
+                categoryIcon = 'fas fa-tshirt'
+              break;
+    
+              case 'Travel':
+                categoryIcon = 'fas fa-route'
+              break;
+    
+              case 'Leisure':
+                categoryIcon = 'far fa-smile-wink'
+              break;
+    
+              case 'Health':
+                categoryIcon = 'fas fa-heartbeat'
+              break;
+    
+              case 'Home':
+                categoryIcon = 'fas fa-home'
+              break;
+    
+              case 'Tech':
+                categoryIcon = 'fas fa-tv'
+              break;
+    
+              case 'Utilities':
+                categoryIcon = 'fas fa-hand-holding-water'
+              break;
+    
+              case 'Bills':
+                categoryIcon = 'fas fa-file-invoice'
+              break;
+    
+              case 'Other':
+                categoryIcon = 'fas fa-random'
+              break;  
+    
+              default:
+                categoryIcon = 'fas fa-random'
+                break;
+          }
+        }
+
+        
+        
             
 
         if(this.state.isLoading){
@@ -157,20 +230,39 @@ class TransactionLoader extends React.Component {
         }else{
             return (
               <div>
-                  <div className="row">
-                      <BarChart />
-                      <PieChart />
-                  </div>
-                  <div className="side-row">
+                  <BarChart />
+                
+                  <div className="button-row">
 
-                      <div class="btn-group" role="group" aria-label="Expenses filters">
-                        <button type="button" id="all" className="btn btn-light filter" onClick={() => this.handleChange(this, 'all')}>All</button>
-                        <button type="button" id="weekly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'weekly')} >Weekly</button>
-                        <button type="button" id="monthly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'monthly')} >Monthly</button>
-                        <button type="button" id="yearly" className="btn btn-light filter" onClick={() => this.handleChange(this, 'yearly')} >Yearly</button>
+                      <div className="btn-group function" role="group" aria-label="Expenses filters">
+                        <button type="button" id="all" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'all')}>All</button>
+                        <button type="button" id="weekly" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'weekly')} >Weekly</button>
+                        <button type="button" id="monthly" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'monthly')} >Monthly</button>
+                        <button type="button" id="yearly" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'yearly')} >Yearly</button>
                       </div>
 
-                      <Link to="/addexpense"><button type="button" className="btn btn-light col side-margin"><i className="fas fa-plus"></i> Add expense</button></Link><br /><br />
+                      <div className="dropdown function">
+                        <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i className={categoryIcon}></i> {currentFilter}
+                        </button>
+                        <div className="dropdown-menu" aria-labelledby="dropdownFilters">
+                        <div className="dropdown-category" onClick={() => this.handleFilter(this, 'none')}>All categories <sup>(Default)</sup></div>
+
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Groceries')}><i className="fas fa-shopping-basket"></i> Groceries</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Food')}><i className="fas fa-utensils"></i> Food</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Shopping')}><i className="fas fa-tshirt"></i> Shopping</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Travel')}><i className="fas fa-route"></i> Travel</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Leisure')}><i className="far fa-smile-wink"></i> Leisure</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Health')}><i className="fas fa-heartbeat"></i> Health</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Home')}><i className="fas fa-home"></i> Home</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Tech')}><i className="fas fa-tv"></i> Tech</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Utilities')}><i className="fas fa-hand-holding-water"></i> Utilities</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Bills')}><i className="fas fa-file-invoice"></i> Bills</div>
+                          <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Other')}><i className="fas fa-random"></i> Other</div>
+                        </div>
+                      </div>
+
+                      <Link to="/addexpense" type="button" className="btn btn-outline-primary btn-block function"><i className="fas fa-plus"></i> Add expense</Link>
                   </div><br />   
                   <div className="transactions">
                           {transactions}         

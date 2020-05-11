@@ -12,7 +12,7 @@ class Transaction extends React.Component {
 
     this.state = {
       localeDate: date,
-      currency: '€',
+      currency: '€', //default currency
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -71,6 +71,7 @@ class Transaction extends React.Component {
 
     render() {
       let symbol = '$';
+      //change from currency text to symbol
       switch(this.props.expense.transactionCurrency){
         case "eur":
           symbol = '€';
@@ -83,20 +84,100 @@ class Transaction extends React.Component {
           break;
 
       }
+      
+      let categoryIcon = "fas fa-random";
+      let category = this.props.expense.expenseType;
+      switch(this.props.expense.expenseType){
+        case 'Groceries':
+            categoryIcon = 'fas fa-shopping-basket'
+          break;
 
-      return (
+          case 'Food':
+            categoryIcon = 'fas fa-utensils'
+          break;
 
-          <div className="transaction expense" onClick={this.handleClick}>
-            <span className="tr-options"><i className="fas fa-ellipsis-v"></i></span>
-            <span className="tr-date">{this.state.localeDate}</span>
-            <span className="tr-message">{this.props.expense.transactionTitle}</span>
-            <span className="tr-amount">
-              <span>{this.state.currency}</span>
-              <span>{this.props.expense.expenseCost}</span>
-              </span>
-        </div>
+          case 'Shopping':
+            categoryIcon = 'fas fa-tshirt'
+          break;
 
-      );
+          case 'Travel':
+            categoryIcon = 'fas fa-route'
+          break;
+
+          case 'Leisure':
+            categoryIcon = 'far fa-smile-wink'
+          break;
+
+          case 'Health':
+            categoryIcon = 'fas fa-heartbeat'
+          break;
+
+          case 'Home':
+            categoryIcon = 'fas fa-home'
+          break;
+
+          case 'Tech':
+            categoryIcon = 'fas fa-tv'
+          break;
+
+          case 'Utilities':
+            categoryIcon = 'fas fa-hand-holding-water'
+          break;
+
+          case 'Bills':
+            categoryIcon = 'fas fa-file-invoice'
+          break;
+
+          case 'Other':
+            categoryIcon = 'fas fa-random'
+          break;  
+
+          default:
+            categoryIcon = 'fas fa-random'
+            break;
+      }
+      
+
+      if(this.props.filter === 'none'){
+          return (
+
+            <div className="transaction expense" onClick={this.handleClick}>
+              <span className="tr-options"><i className={categoryIcon} title={category}></i></span>
+              <span className="tr-date">{this.state.localeDate}</span>
+              <span className="tr-message">{this.props.expense.transactionTitle}</span>
+              <span className="tr-amount">
+                <span>{this.state.currency}</span>
+                <span>{this.props.expense.expenseCost}</span>
+                </span>
+          </div>
+
+        );
+
+      }else{
+          //display expense if matches filter
+          if(this.props.expense.expenseType === this.props.filter){
+              return (
+
+                <div className="transaction expense" onClick={this.handleClick}>
+                  <span className="tr-options"><i className={categoryIcon} title={category}></i></span>
+                  <span className="tr-date">{this.state.localeDate}</span>
+                  <span className="tr-message">{this.props.expense.transactionTitle}</span>
+                  <span className="tr-amount">
+                    <span>{this.state.currency}</span>
+                    <span>{this.props.expense.expenseCost}</span>
+                    </span>
+              </div>
+    
+            );
+          }else {
+              return (
+
+                <div className="expense-does-not-match-category"></div>
+    
+            );
+          }
+      }
+      
     }
   }
 

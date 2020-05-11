@@ -315,8 +315,8 @@ async updateTheme(cb) {
                   <small>This action is not reversible. All your data will be deleted.</small>
                   
                   <div className="modal" id="confirmClose">
-                    <div class="modal-content">
-                      <span class="close" onClick={this.handleCloseModal}>&times;</span>
+                    <div className="modal-content">
+                      <span className="close" onClick={this.handleCloseModal}>&times;</span>
                       <p>Are you sure you want to close your account?</p>
                        <button type="button" className="btn btn-danger" onClick={this.handleCloseAccount}>Close account</button>
                         

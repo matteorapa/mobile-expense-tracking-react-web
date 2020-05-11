@@ -20,11 +20,13 @@ const Header = (props) => {
                   <li className="nav-item active">
                     <Link to="/" className="nav-link">Home</Link>
                   </li>
+                  
                   <li className="nav-item">
-                    <Link to="/compare" className="nav-link">Compare Yourself</Link>    
+                    <Link to="/vault" className="nav-link">My Expenses</Link>    
                   </li>
+
                   <li className="nav-item">
-                    <Link to="/vault" className="nav-link">My Finance</Link>    
+                    <Link to="/compare" className="nav-link">Analytics</Link>    
                   </li>
                   <li className="nav-item">
                     <Link to="/account" className="nav-link">My Account</Link>    

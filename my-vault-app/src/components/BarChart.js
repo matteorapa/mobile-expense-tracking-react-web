@@ -57,7 +57,7 @@ export default class BarChart extends React.Component {
             labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August' ,'September', 'October', 'November', 'December'],
             datasets: [
               {
-                label: 'Spending over the past 6 months',
+                label: 'Spending over the past 12 months',
                 backgroundColor: 'rgba(255,99,132,0.2)',
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1,
@@ -81,7 +81,7 @@ export default class BarChart extends React.Component {
         }else {
               return (
                   <div className="chart">
-                    <Bar data={this.data} />
+                    <Bar data={this.data} height={80} />
                 </div>
                 );
 

@@ -117,6 +117,7 @@ export default class DarkMode extends React.Component {
         document.body.style.setProperty('--light-color', 'rgba(197, 197, 197, 0.699)');
         document.body.style.setProperty('--dark-color', 'rgb(0, 0, 0)');
         document.body.style.setProperty('--shadow-color', 'rgb(204, 204, 204)');
+        document.body.style.setProperty('--theme-color', this.state.themeColor);
 
     }
 
@@ -127,6 +128,7 @@ export default class DarkMode extends React.Component {
         document.body.style.setProperty('--light-color', 'rgba(255,255,255)');
         document.body.style.setProperty('--dark-color', 'rgb(0, 0, 0)');
         document.body.style.setProperty('--shadow-color', 'rgb(10, 10, 10)');
+        document.body.style.setProperty('--theme-color', this.state.themeColor);
 
     }
 

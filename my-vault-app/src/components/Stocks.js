@@ -4,23 +4,24 @@ import React from 'react';
 export default class Stocks extends React.Component {
 
   componentDidMount() {
-    fetch("https://sandbox.iexapis.com/stable/stock/market/batch?symbols=aapl,fb&types=quote&range=1m&last=5&token=Tsk_1dc9a50b774c48a1935d075b55a7feeb")
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            stock: result
-          });
-          console.log(this.state.stock);
-        },
+    //https://cloud.iexapis.com/stable/stock/market/batch?symbols=aapl,fb,t,v,amzn,goog,msft,nflx,mcd,pypl,uber,nsdq100,spx500,dj30&types=quote,news,chart&range=1m&last=5&token=pk_54fb05aeb2894021ab4e839ae2de6cb7
+    // fetch("https://cloud.iexapis.com/stable/stock/market/batch?symbols=btc,nsdq100,spx500,dj30&types=quote,news,chart&range=1m&last=5&token=pk_54fb05aeb2894021ab4e839ae2de6cb7")
+    //   .then(res => res.json())
+    //   .then(
+    //     (result) => {
+    //       this.setState({
+    //         stock: result
+    //       });
+    //       console.log(this.state.stock);
+    //     },
 
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          });
-        }
-      )
+    //     (error) => {
+    //       this.setState({
+    //         isLoaded: true,
+    //         error
+    //       });
+    //     }
+    //   )
 
   }
     render() {
@@ -28,6 +29,7 @@ export default class Stocks extends React.Component {
         <aside className="sidebar">
     
             <h3>Stocks</h3>
+            <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
            <div className="stocks">
                 <div className="stock">
                     <span className="symbol">AAPL</span>

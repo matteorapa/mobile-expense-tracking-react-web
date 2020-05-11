@@ -39,9 +39,9 @@ export default class Vault extends React.Component {
             {/* <div className="container-block"> */}
 
             <div className="modal-message" id="messageClose">
-                    <div class="modal-content-message">
+                    <div className="modal-content-message">
                       <div className="side-row">
-                        <span class="close" onClick={this.handleCloseModal}>&times;</span>
+                        <span className="close" onClick={this.handleCloseModal}>&times;</span>
                         <span className="text-success side-margin">{this.state.message}</span>
                       </div>
                     </div>

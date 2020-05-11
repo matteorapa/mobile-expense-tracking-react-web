@@ -10,7 +10,7 @@ export default class Welcome extends React.Component {
       return (
         <div>
           <Header />
-          <div className="main-container">
+          <div className="main-container focused">
             
             <div className="right">
               <Signin />
