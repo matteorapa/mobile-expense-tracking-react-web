@@ -16,7 +16,7 @@ export default class BarChart extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch('http://myvault.technology/api/analytics/MonthlyTotalsEUR', {
+        await fetch('https://myvault.technology/api/analytics/MonthlyTotalsEUR', {
           method: 'GET',
           headers: {
             Accept: 'application/json',

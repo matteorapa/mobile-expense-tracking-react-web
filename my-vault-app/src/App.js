@@ -11,6 +11,8 @@ import ExpenseTemplate from './pages/ExpenseTemplate'
 import Footer from './components/Footer';
 import Preferences from './pages/Preferences';
 import AddTransaction from './pages/AddTransaction'
+import AddPeriodic from './pages/AddPeriodic';
+import PeriodicLoader from './pages/PeriodicLoader'; 
 
 function App() {
   return (
@@ -22,7 +24,9 @@ function App() {
           <ProtectedRoute path="/vault" component={Vault} exact />
           <ProtectedRoute path="/compare" component={Compare} exact/>
           <ProtectedRoute path="/expense" component={ExpenseTemplate} />
-          <ProtectedRoute path="/addexpense" component={AddTransaction} />
+          <ProtectedRoute path="/periodic" component={PeriodicLoader} />
+          <Route path="/addexpense" component={AddTransaction} />
+          <ProtectedRoute path="/addperiodic" component={AddPeriodic} />
           <ProtectedRoute path="/account" component={Preferences} />
           <Route path="/signup" component={Account} exact/>
           <Route path="*" component={ErrorPage} />

@@ -25,7 +25,7 @@ export default class PieChart extends React.Component {
     }
 
      async componentDidMount() {
-        await fetch('http://myvault.technology/api/analytics/CategoryTotals' + this.currency + this.duration, {
+        await fetch('https://myvault.technology/api/analytics/CategoryTotals' + this.currency + this.duration, {
             method: 'GET',
             headers: {
               Accept: 'application/json',

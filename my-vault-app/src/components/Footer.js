@@ -10,7 +10,7 @@ export default class Footer extends React.Component {
         <footer className="footer">
           <div className="container">
               <hr />
-            <span className="text-muted">Place sticky footer content here.</span>
+            <span className="text-muted">MyVault<sup> Helping you save money.</sup></span>
             <Stocks />
           </div>
       </footer>

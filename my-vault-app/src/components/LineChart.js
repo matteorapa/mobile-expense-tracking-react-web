@@ -1,7 +1,6 @@
 
 
 import React from 'react';
-import './component.css';
 import authentication from '../authentication'
 import {Line} from 'react-chartjs-2';
 
@@ -17,7 +16,7 @@ export default class LineChart extends React.Component {
     }
 
     async componentDidMount() {
-        await fetch('http://myvault.technology/api/analytics/MonthlyTotals', {
+        await fetch('https://myvault.technology/api/analytics/MonthlyTotals', {
           method: 'GET',
           headers: {
             Accept: 'application/json',

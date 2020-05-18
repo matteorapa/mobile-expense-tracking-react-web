@@ -3,21 +3,20 @@ import Header from '../components/Header';
 import authentication from '../authentication';
 import Back from '../components/Back'
 import './page.css';
-import {Link} from 'react-router-dom';
 
-export default class AddTransaction extends React.Component {
+export default class AddPeriodic extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
             desc: '',
-            category: '',
+            category: 'Shopping',
             amount: '',
-            payment: '',
             currency: 'eur',
-            error: '',
-            online: false,
-            isPeriodic: false
+            interval: 'day',
+            occurence: 3,
+            date: new Date(),
+            error: '',  
         }
         
     
@@ -33,51 +32,60 @@ export default class AddTransaction extends React.Component {
                 this.setState({
                 desc: event.target.value
                 });
+                console.log(event.target.value);
                 
             break;
             case 'amount':
                 this.setState({
                 amount: event.target.value
                 });
+                console.log(event.target.value);
                 
             break;
             case 'currency':
                 this.setState({
                 currency: event.target.value
                 });
+                console.log(event.target.value);
                 
             break;
             case 'category':
                 this.setState({
                 category: event.target.value
                 });
+                console.log(event.target.value);
                 
             break;
-            case 'payment':
-                if(event.target.value === "Periodic"){
-                    //show peroidic fields
-                    //remove fields which are not needed
-                    //change api call to peroidic
-
-                }
+            case 'occurence':
                 this.setState({
-                payment: event.target.value
+                occurence: event.target.value
                 });
+                console.log(event.target.value);
                 
             break;
-            case 'online':
+            case 'interval':
                 
                 this.setState({
-                online: event.target.checked
+                interval: event.target.value
                 });
+                console.log(event.target.value);
             break;
+            case 'startDate':
+                
+                this.setState({
+                    date: event.target.value
+                });
+                console.log(event.target.value);
+            break;
+            default:
+                break;
         }
     }
 
     async handleSubmit(event) { 
         event.preventDefault();
         
-        await fetch('https://myvault.technology/api/expenses', {
+        await fetch('https://myvault.technology/api/expenses/periodic', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -85,12 +93,12 @@ export default class AddTransaction extends React.Component {
                 'Authorization': 'Bearer ' + authentication.token,
             },
             body: JSON.stringify({
-                title: this.state.desc,
                 category: this.state.category,
                 amount: this.state.amount,
-                cashCard: this.state.payment,
                 currency: this.state.currency,
-                onlineSwitch: this.state.online,
+                title: this.state.desc,
+                date: String(this.state.date),
+                interval: this.state.occurence + " " +this.state.interval
             })
         })
 
@@ -99,35 +107,36 @@ export default class AddTransaction extends React.Component {
             .then((response) => {
 
                 if (response.success) {
-                    console.log('Added transaction successfully!');
+                    console.log('Peroidic Expense successfully posted!');
                     this.props.history.push({
-                        pathname: '/vault',
-                        search: 'Your expense has been created sucessfully!' 
+                        pathname: '/periodic',
+                        search: 'Your periodic expense has been created sucessfully!' 
                       });
+                    
                 }
                 else {
                     console.log('Something went wrong!')
-                    this.setState({
-                        error: 'Unable to create expense, please try again.'
-                    });
-                    console.log(response)
                     
                 }
             })
             .catch(error => console.warn(error))
+
+        
     }
 
       render() {
+          var plural = "";
+          if(this.state.occurence > 1){
+              plural = "s";
+          }else {
+              plural = "";
+          }
         return (
           <div>
             <Header />
             <div className="main-container focused">
             <Back /><br /><br />
-            <div className="edge-row">
-                <h2>Add Expense</h2>
-                <Link to="/addperiodic" className="btn btn-outline-secondary btn-sm">Add Periodic Expense <i className="fas fa-long-arrow-alt-right"></i></Link>
-            </div>
-              <hr /><br />
+              <h2>Add Periodic</h2><hr /><br />
               
               <form id="add-expense-form"  onSubmit={this.handleSubmit} method="post">
               
@@ -136,14 +145,14 @@ export default class AddTransaction extends React.Component {
                         <div className="form-group col-md-6">
                             <label htmlFor="desc">Description</label>
                             <input type="text" name="description" className="form-control" id="desc" aria-describedby="descHelp" placeholder="Expense description" value={this.state.desc} onChange={this.handleChange} />
-                            <small id="descHelp" className="form-text text-muted">Short description about your expense.</small>
+                            <small id="descHelp" className="form-text text-muted">Short description about your periodic expense.</small>
                         </div>
-                        <div className="form-group col-md-6">
+                        <div className="col-md-6">
                             <label htmlFor="amount">Amount</label>
                             <div className="input-group mb-2">
                                 <div className="input-group-prepend">
                                     <div className="input-group-text">
-                                        <select className="currency-box" id="currency" name="currency" defaultValue="eur" value={this.state.currency} onChange={this.handleChange} required>
+                                        <select className="currency-box" id="currency" name="currency" defaultValue="eur" onChange={this.handleChange} required>
                                             <option value="eur">EUR</option>
                                             <option value="usd">USD</option>
                                             <option value="gbp">GBP</option>
@@ -155,6 +164,12 @@ export default class AddTransaction extends React.Component {
                         </div>
                 </div>
 
+                </div>
+
+                <div className="form-group">
+                    <label htmlFor="startDate">Start Date</label>
+                    <input type="date" id="startDate" name="startDate" className="form-control" onChange={this.handleChange} required />
+                    
                 </div>
 
                 <div className="form-group">
@@ -174,23 +189,29 @@ export default class AddTransaction extends React.Component {
                     </select>
                 </div>
                 
-                <div className="form-group">
-                        <label className="form-check-label" htmlFor="payment">Payment Method</label>
-                    
-                        <select className="form-control" id="payment" name="payment" value={this.state.payment} onChange={this.handleChange}>
-                            <option>Cash</option>
-                            <option>Card</option>
-                        </select><br />
-                        
-                        
+              
 
-                        <div className="form-check">
-                            <input className="form-check-input" type="checkbox" id="online" name="online" value="online" aria-describedby="onlineHelp" onChange={this.handleChange}/>
-                            <label className="form-check-label" htmlFor="online">Online Purchase?</label>
-                            <small id="onlineHelp" className="form-text text-muted">Monitor your expenses which happen online.</small>
+                <div className="form-group">
+                    <div className="form-row">
+                        <div className="form-group col-md-6">
+                            <label htmlFor="desc">Occurrence</label>
+                            <input type="number" name="occurence" className="form-control" id="occurence" aria-describedby="occHelp" min="1" value={this.state.occurence} onChange={this.handleChange} />
+                            <small id="occHelp" className="form-text text-muted">Number of occurrence of your periodic expense.</small>
                         </div>
+                        <div className="form-group col-md-6">
+                            <label htmlFor="period">Interval</label>
+                            <select className="form-control" id="interval" name="interval" onChange={this.handleChange}>
+                                <option>Day</option>
+                                <option>Week</option>
+                                <option>Month</option>
+                                <option>Year</option>
+                            </select>
+                            
+                        </div>
+                        <span>This periodic expense will repeat every {this.state.occurence} {this.state.interval}{plural}</span>
+                    </div>
                 </div>
-                <button type="submit" className="btn btn-outline-success">Add Expense</button>
+                <button type="submit" className="btn btn-outline-success">Add Periodic</button>
                 <span className="text-danger">{this.state.error}</span>
             </form>
               

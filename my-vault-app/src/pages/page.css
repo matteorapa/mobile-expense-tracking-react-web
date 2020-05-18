@@ -5,7 +5,7 @@ body {
     /* default light theme colors */
     --background-color: rgb(255, 255, 255);
     --text-color: rgb(15, 15, 15);
-    --light-color: rgba(197, 197, 197, 0.699);
+    --light-color: rgba(210, 210, 210, 0.65);
     --link-color: rgb(110, 116, 177);
     --theme-color: rgb(179, 15, 105);
     --shadow-color: rgb(204, 204, 204);
@@ -176,7 +176,23 @@ p{
 
 }
 
+.end-row{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.inner-periodic{
+    flex: 1;
+    padding: 0 12px;
+}
+
 .button-row .function {
+    margin: 0px 6px;
+}
+
+.end-row .function {
     margin: 0px 6px;
 }
 
@@ -350,11 +366,11 @@ p{
     .modal {
         display: none;
         position: fixed; 
-        padding-top: 300px; 
+        padding-top: 180px; 
         left: 0;
         top: 0;
         width: 100%;
-        background-color: rgba(0,0,0,0.7);
+        background-color: var(--light-color);
       }
 
       .modal-message {
@@ -363,6 +379,7 @@ p{
         padding-top: 100px; 
         right: 0;
         top: 0;
+        
         
       }
 
@@ -399,6 +416,16 @@ p{
         
     }
 
+    .periodic-category{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 8px;
+        flex: 0.15;
+    }
+    
+
     .dropdown-category{
         padding: 6px 12px ;
         font-size: 13px;
@@ -412,17 +439,17 @@ p{
     .dropdown-category:hover{
         background-color: var(--theme-color);
     }
-    
-    
-    
-    
-    
-    
-      
+
+    .edge-row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
 
 
 
-
+    
 @media only screen and (max-width: 787px){
     .navbar{
         padding: 12px;

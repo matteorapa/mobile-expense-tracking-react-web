@@ -141,7 +141,7 @@ class Transaction extends React.Component {
       if(this.props.filter === 'none'){
           return (
 
-            <div className="transaction expense" onClick={this.handleClick}>
+            <div key={this.props.expense.expenseId} className="transaction expense" onClick={this.handleClick}>
               <span className="tr-options"><i className={categoryIcon} title={category}></i></span>
               <span className="tr-date">{this.state.localeDate}</span>
               <span className="tr-message">{this.props.expense.transactionTitle}</span>
@@ -158,7 +158,7 @@ class Transaction extends React.Component {
           if(this.props.expense.expenseType === this.props.filter){
               return (
 
-                <div className="transaction expense" onClick={this.handleClick}>
+                <div key={this.props.expense.expenseId} className="transaction expense" onClick={this.handleClick}>
                   <span className="tr-options"><i className={categoryIcon} title={category}></i></span>
                   <span className="tr-date">{this.state.localeDate}</span>
                   <span className="tr-message">{this.props.expense.transactionTitle}</span>
@@ -172,7 +172,7 @@ class Transaction extends React.Component {
           }else {
               return (
 
-                <div className="expense-does-not-match-category"></div>
+                <div key={this.props.expense.expenseId} className="expense-does-not-match-category"></div>
     
             );
           }

@@ -21,7 +21,7 @@ export default class Preferences extends React.Component {
   }
 
   componentDidMount() {
-    fetch('http://myvault.technology/api/users/details', {
+    fetch('https://myvault.technology/api/users/details', {
         method: 'GET',
         headers: {
             Accept: 'application/json',
@@ -58,7 +58,7 @@ export default class Preferences extends React.Component {
             console.log(error);
         });
 
-        fetch('http://myvault.technology/api/pref', {
+        fetch('https://myvault.technology/api/pref', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -91,7 +91,7 @@ export default class Preferences extends React.Component {
 
 async updateAccount(cb) {
 
-  await fetch('http://myvault.technology/api/users/update', {
+  await fetch('https://myvault.technology/api/users/update', {
       method: 'PUT',
       headers: {
           Accept: 'application/json',
@@ -124,7 +124,7 @@ async updateAccount(cb) {
 
 async updateTheme(cb) {
 
-  await fetch('http://myvault.technology/api/pref', {
+  await fetch('https://myvault.technology/api/pref', {
       method: 'PUT',
       headers: {
           Accept: 'application/json',
@@ -237,7 +237,7 @@ async updateTheme(cb) {
   }
 
   handleCloseAccount(event){
-    fetch('http://myvault.technology/api/users', {
+    fetch('https://myvault.technology/api/users', {
             method: 'DELETE',
             headers: {
                 Accept: 'application/json',
@@ -313,7 +313,7 @@ async updateTheme(cb) {
                 <div className="column">
                   <button type="button" className="btn btn-outline-danger" onClick={this.handleModal}>Close account</button>
                   <small>This action is not reversible. All your data will be deleted.</small>
-                  
+                   
                   <div className="modal" id="confirmClose">
                     <div className="modal-content">
                       <span className="close" onClick={this.handleCloseModal}>&times;</span>

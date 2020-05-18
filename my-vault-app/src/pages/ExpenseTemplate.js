@@ -28,7 +28,7 @@ import { withRouter } from "react-router";
 
     async handleDelete(event , id) { 
       
-      await fetch('http://myvault.technology/api/expenses/del/' + id, {
+      await fetch('https://myvault.technology/api/expenses/del/' + id, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',

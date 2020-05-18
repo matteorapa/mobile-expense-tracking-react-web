@@ -15,7 +15,7 @@ export default class DarkMode extends React.Component {
      async componentDidMount(){
         //api request to get the dark mode state, and set the state accordingly
         if(authentication.isAuthenticated()){
-            await fetch('http://myvault.technology/api/pref', {
+            await fetch('https://myvault.technology/api/pref', {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -60,7 +60,7 @@ export default class DarkMode extends React.Component {
     async updateTheme(mode, cb) {
 
         
-        await fetch('http://myvault.technology/api/pref', {
+        await fetch('https://myvault.technology/api/pref', {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
@@ -114,7 +114,7 @@ export default class DarkMode extends React.Component {
 
         document.body.style.setProperty('--background-color', 'rgb(255, 255, 255)');
         document.body.style.setProperty('--text-color', 'rgb(15, 15, 15)');
-        document.body.style.setProperty('--light-color', 'rgba(197, 197, 197, 0.699)');
+        document.body.style.setProperty('--light-color', 'rgba(210, 210, 210, 0.65)');
         document.body.style.setProperty('--dark-color', 'rgb(0, 0, 0)');
         document.body.style.setProperty('--shadow-color', 'rgb(204, 204, 204)');
         document.body.style.setProperty('--theme-color', this.state.themeColor);
@@ -125,7 +125,7 @@ export default class DarkMode extends React.Component {
 
         document.body.style.setProperty('--background-color', 'rgb(35, 35, 38)');
         document.body.style.setProperty('--text-color', 'rgb(250, 250, 250)');
-        document.body.style.setProperty('--light-color', 'rgba(255,255,255)');
+        document.body.style.setProperty('--light-color', 'rgba(25,25,28,0.65)');
         document.body.style.setProperty('--dark-color', 'rgb(0, 0, 0)');
         document.body.style.setProperty('--shadow-color', 'rgb(10, 10, 10)');
         document.body.style.setProperty('--theme-color', this.state.themeColor);

@@ -5,7 +5,7 @@ class Authentication{
        }
 
     async login(email, password, cb){
-        await fetch('http://myvault.technology/api/login', {
+        await fetch('https://myvault.technology/api/login', {
             method: 'POST',
             headers: {
                 Accept: 'application/json',
@@ -59,7 +59,7 @@ class Authentication{
 
          })
         };
-        let response = await fetch('http://myvault.technology/api/users', requestOptions);
+        let response = await fetch('https://myvault.technology/api/users', requestOptions);
         const status= await response.status;
 
         if(status === 201){

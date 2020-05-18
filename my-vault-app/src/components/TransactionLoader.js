@@ -6,6 +6,7 @@ import authentication from '../authentication';
 import {Link} from "react-router-dom";
 import BarChart from './BarChart';
 import PieChart from './PieChart';
+import LineChart from './LineChart';
 
 
 class TransactionLoader extends React.Component {
@@ -14,7 +15,7 @@ class TransactionLoader extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
-        call: 'http://myvault.technology/api/expenses/',
+        call: 'https://myvault.technology/api/expenses/',
         isLoading: true,
         dataSource : [],
         filter: "none",
@@ -36,24 +37,24 @@ class TransactionLoader extends React.Component {
       if(type){ //check if type is being passed
         switch(type){
           case 'all': 
-          type = 'http://myvault.technology/api/expenses/'
+          type = 'https://myvault.technology/api/expenses/'
           break;
 
           case 'weekly': 
-          type = 'http://myvault.technology/api/expenses/w'
+          type = 'https://myvault.technology/api/expenses/w'
           break;
 
           case 'monthly': 
-          type = 'http://myvault.technology/api/expenses/m'
+          type = 'https://myvault.technology/api/expenses/m'
           break;
 
           case 'yearly': 
-          type = 'http://myvault.technology/api/expenses/y'
+          type = 'https://myvault.technology/api/expenses/y'
           break;
         }
 
       }else{
-        type = 'http://myvault.technology/api/expenses/'
+        type = 'https://myvault.technology/api/expenses/'
       }
       
         fetch(type, {
@@ -87,7 +88,7 @@ class TransactionLoader extends React.Component {
     async addTransaction(event){
 
       console.log('add transaction mathod called');
-      await fetch('http://myvault.technology/api/expenses', {
+      await fetch('https://myvault.technology/api/expenses', {
         method: 'POST',
         headers: {
             Accept: 'application/json',
@@ -120,6 +121,8 @@ class TransactionLoader extends React.Component {
         })
         .catch(error => console.warn(error))
     }
+
+    
 
 
       handleChange(event, type){
@@ -155,7 +158,7 @@ class TransactionLoader extends React.Component {
         const {history} = this.props;
 
         let data = this.state.dataSource;
-        let transactions = data.map((e) => {return (<Transaction   expense={e} filter={this.state.filter}/> )} ); 
+        let transactions = data.map((e) => {return (<Transaction key={e.expenseId} expense={e} filter={this.state.filter}/> )} ); 
 
         let  currentFilter = "Filter";
         let categoryIcon = "fas fa-funnel-dollar";
@@ -216,9 +219,6 @@ class TransactionLoader extends React.Component {
           }
         }
 
-        
-        
-            
 
         if(this.state.isLoading){
             return (
@@ -263,6 +263,7 @@ class TransactionLoader extends React.Component {
                       </div>
 
                       <Link to="/addexpense" type="button" className="btn btn-outline-primary btn-block function"><i className="fas fa-plus"></i> Add expense</Link>
+                      <Link to="/periodic" className="btn btn-outline-secondary function">Periodic</Link>
                   </div><br />   
                   <div className="transactions">
                           {transactions}         
