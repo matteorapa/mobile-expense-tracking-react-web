@@ -189,12 +189,12 @@ class TransactionLoader extends React.Component {
                         <button type="button" id="monthly" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'monthly')} >Monthly</button>
                         <button type="button" id="yearly" className="btn btn-outline-secondary" onClick={() => this.handleChange(this, 'yearly')} >Yearly</button>
                       </div>
-
-                      <div className="dropdown function">
-                        <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <i className={categoryIcon}></i> {currentFilter}
-                        </button>
-                        <div className="dropdown-menu" aria-labelledby="dropdownFilters">
+                      
+                          <div className="dropdown function">
+                            <button className="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownFilters" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i className={categoryIcon}></i> {currentFilter}
+                            </button>
+                            <div className="dropdown-menu" aria-labelledby="dropdownFilters">
                         <div className="dropdown-category" onClick={() => this.handleFilter(this, 'none')}>All categories <sup>(Default)</sup></div>
 
                           <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Groceries')}><i className="fas fa-shopping-basket"></i> Groceries</div>
@@ -209,11 +209,12 @@ class TransactionLoader extends React.Component {
                           <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Bills')}><i className="fas fa-file-invoice"></i> Bills</div>
                           <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Other')}><i className="fas fa-random"></i> Other</div>
                         </div>
+                          </div>
+                          <Link to="/periodic" className="btn btn-outline-secondary btn-block function">Periodic</Link>
                       </div>
-                      <Link to="/periodic" className="btn btn-outline-secondary function">Periodic</Link>
                       <Link to="/addexpense" type="button" className="btn btn-outline-primary btn-block function"><i className="fas fa-plus"></i> Add expense</Link>
                       
-                  </div><br />   
+                  <br />   
                   <div className="transactions">
                           {transactions}         
                   </div>

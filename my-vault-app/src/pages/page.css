@@ -46,6 +46,7 @@ p{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     padding: 9px;
     margin: 3px;
     border-radius: 3px;
@@ -173,7 +174,7 @@ p{
 }
 
 .button-row .function {
-    margin: 0px 6px;
+    margin: 6px;
 }
 
 .end-row .function {
@@ -288,7 +289,8 @@ p{
     }
 
     .tr-message{
-        flex: 2;
+        flex: 3 1;
+        padding: 3px 12px;
     }
 
     .tr-amount{
@@ -435,6 +437,8 @@ p{
 
     
 @media only screen and (max-width: 787px){
+
+
     .navbar{
         padding: 12px;
     }
@@ -457,6 +461,20 @@ p{
 
     .main-container{
         padding: 12px;
+    }
+
+    .button-row{
+        flex-direction: column;
+    }
+
+    .modal {
+        padding-top: 64px;
+      }
+
+    .modal-content{
+        width: 95%;
+        height: 85vh;
+        overflow-y: auto;
     }
 }
 
