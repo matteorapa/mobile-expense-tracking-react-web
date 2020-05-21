@@ -201,10 +201,10 @@ export default class AddPeriodic extends React.Component {
                         <div className="form-group col-md-6">
                             <label htmlFor="period">Interval</label>
                             <select className="form-control" id="interval" name="interval" onChange={this.handleChange}>
-                                <option>Day</option>
-                                <option>Week</option>
-                                <option>Month</option>
-                                <option>Year</option>
+                                <option value="day">Day</option>
+                                <option value="week">Week</option>
+                                <option value="month">Month</option>
+                                <option value="year">Year</option>
                             </select>
                             
                         </div>

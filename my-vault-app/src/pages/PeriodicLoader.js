@@ -3,6 +3,7 @@ import authentication from '../authentication';
 import {Link} from "react-router-dom";
 import Header from '../components/Header';
 import {getCategoryIcon} from '../global';
+import Back from '../components/Back'
 
 
 export default class PeriodicLoader extends React.Component {
@@ -296,6 +297,7 @@ export default class PeriodicLoader extends React.Component {
       return (<div>
             <Header />
             <div className="main-container focused">
+                <Back /><br /><br />
             <span className="text-success">{this.state.message}</span>
                 <h2>My Periodic Expenses</h2>
                 <Link to="/addperiodic" className="btn btn-outline-secondary btn-sm">Add Periodic Expense <i className="fas fa-long-arrow-alt-right"></i></Link><hr/><br />
@@ -369,10 +371,10 @@ export default class PeriodicLoader extends React.Component {
                                     <div className="form-group col-md-6">
                                         <label htmlFor="period">Interval</label>
                                         <select className="form-control" id="interval" name="interval" value={this.state.interval} onChange={this.handleChange}>
-                                            <option value="Day">Day</option>
-                                            <option value="Week">Week</option>
-                                            <option value="Month">Month</option>
-                                            <option value="Year">Year</option>
+                                            <option value="day">Day</option>
+                                            <option value="week">Week</option>
+                                            <option value="month">Month</option>
+                                            <option value="year">Year</option>
                                         </select>
                                         
                                     </div>
