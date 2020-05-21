@@ -298,12 +298,27 @@ async updateTheme(cb) {
                 
                 <br /><br />
                 <form id="editDetails" onSubmit={this.handleThemeSubmit} method="post">
-                  <h3>Preferences</h3><hr />
-                  <DarkMode /><br /><br />
+                  <h3>Preferences</h3><hr /><br />
                   
                   <div className="form-group">
                         <label htmlFor="firstname">Theme Color <small>{this.state.color}</small></label><br />
-                        <input type="color" className="color-picker" id="themecolor" name="color" value={this.state.color}  onChange={this.handleChange} required/>
+                        <input type="color" list="presetColors" className="color-picker" id="themecolor" name="color" value={this.state.color}  onChange={this.handleChange} required/>
+                        <datalist id="presetColors">
+                          <option>#add8e6</option>/>
+                          <option>#26baee</option>
+                          <option>#7fffd4</option>
+                          <option>#90ee90</option>
+                          <option>#006400</option>
+                          <option>#ff0000</option>
+                          <option>#dc143c</option>
+                          <option>#800000</option>
+                          <option>#ff8c00</option>
+                          <option>#ffd700</option>
+                          <option>#ffc0cb</option>
+                          <option>#f5deb3</option>
+                          <option>#e6e6fa</option>
+                          <option>#ff7f50</option>
+                        </datalist>
                   </div>
                   <button type="submit" className="btn btn-outline-success">Save Preferences</button>
 
