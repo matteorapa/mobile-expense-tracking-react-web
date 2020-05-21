@@ -36,29 +36,6 @@ class Signin extends React.Component {
     let error = true;
     await authentication.login(this.state.user_email, this.state.user_password, () => { 
       error = false;
-      
-
-     fetch('https://myvault.technology/api/expenses/periodic', {
-      method: 'PUT',
-      headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer ' + authentication.token,
-      },
-  })
-
-
-      .then(response => (response.json()))
-      .then((response) => {
-
-          if (response.success) {
-          }
-          else {
-              console.log('Error updating periodic expenses')
-              console.log(response);
-          }
-      })
-      .catch(error => console.warn(error))
 
       history.push('/vault');
     });

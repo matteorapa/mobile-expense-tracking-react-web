@@ -110,7 +110,7 @@ export default class AddPeriodic extends React.Component {
                     console.log('Peroidic Expense successfully posted!');
                     this.props.history.push({
                         pathname: '/periodic',
-                        search: 'Your periodic expense has been created sucessfully!' 
+                        state: { message: "Your periodic expense has been created sucessfully!"} 
                       });
                     
                 }
@@ -144,7 +144,7 @@ export default class AddPeriodic extends React.Component {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="desc">Description</label>
-                            <input type="text" name="description" className="form-control" id="desc" aria-describedby="descHelp" placeholder="Expense description" value={this.state.desc} onChange={this.handleChange} />
+                            <input type="text" name="description" className="form-control" id="desc" aria-describedby="descHelp" placeholder="Expense description" value={this.state.desc} onChange={this.handleChange} required/>
                             <small id="descHelp" className="form-text text-muted">Short description about your periodic expense.</small>
                         </div>
                         <div className="col-md-6">
@@ -195,7 +195,7 @@ export default class AddPeriodic extends React.Component {
                     <div className="form-row">
                         <div className="form-group col-md-6">
                             <label htmlFor="desc">Occurrence</label>
-                            <input type="number" name="occurence" className="form-control" id="occurence" aria-describedby="occHelp" min="1" value={this.state.occurence} onChange={this.handleChange} />
+                            <input type="number" name="occurence" className="form-control" id="occurence" aria-describedby="occHelp" min="1" value={this.state.occurence} onChange={this.handleChange} required/>
                             <small id="occHelp" className="form-text text-muted">Number of occurrence of your periodic expense.</small>
                         </div>
                         <div className="form-group col-md-6">

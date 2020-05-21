@@ -70,21 +70,6 @@ class Transaction extends React.Component {
 
 
     render() {
-      let symbol = '$';
-      //change from currency text to symbol
-      switch(this.props.expense.transactionCurrency){
-        case "eur":
-          symbol = '€';
-          break;
-        case "usd":
-          symbol = '$';
-          break;
-        case "pnd":
-          symbol = '£';
-          break;
-
-      }
-      
       let categoryIcon = "fas fa-random";
       let category = this.props.expense.expenseType;
       switch(this.props.expense.expenseType){

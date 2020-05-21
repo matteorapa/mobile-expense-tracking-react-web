@@ -13,7 +13,9 @@ export default class Account extends React.Component {
       email: '',
       password: '',
       verify: '',
-      error: ''
+      error: '',
+      verifyMessage: "",
+      verifyError: ""
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -60,14 +62,20 @@ export default class Account extends React.Component {
                     
                     //show cross and highlight red and display error text
                     this.setState({
-                      match: 'true'
+                      match: 'true',
+                      verifyMessage: "✓ Passwords match.",
+                      verifyError: ""
                     });
+                    console.log("Passwords match")
 
                   }else {
                     //show check and highlight green
                     this.setState({
-                      match: 'false'
+                      match: 'false',
+                      verifyError: "✗ Passwords not match, please try again!",
+                      verifyMessage: ""
                     });
+                    console.log("Passwords do not match")
                   }
                   break;
       default:
@@ -99,7 +107,7 @@ export default class Account extends React.Component {
 
       if(!authentication.isAuthenticated){
         this.setState({
-          error: 'Failed. Unable to create account'
+          error: 'Failed. Unable to create account, please try again!'
         });
       }
       
@@ -122,31 +130,31 @@ export default class Account extends React.Component {
                 <div className="form-row">
                   <div className="col">
                     <label htmlFor="firstname">First Name</label>
-                    <input type="text" name="name" id="firstname" className="form-control" placeholder="First name" value={this.state.name} onChange={this.handleChange} />
+                    <input type="text" name="name" id="firstname" className="form-control" placeholder="First name" value={this.state.name} onChange={this.handleChange} required/>
                   </div>
                   <div className="col">
                   <label htmlFor="surname">Surname</label>
-                    <input type="text" name="surname" id="surname" className="form-control" placeholder="Last name" value={this.state.surname} onChange={this.handleChange} />
+                    <input type="text" name="surname" id="surname" className="form-control" placeholder="Last name" value={this.state.surname} onChange={this.handleChange} required/>
                   </div>
                 </div>
                 </div>
                 <div className="form-group">
                   <label htmlFor="dob">Date of Birth</label>
-                  <input type="date" name="dob" className="form-control" id="dob" placeholder="Enter email" value={this.state.dob} onChange={this.handleChange} />
+                  <input type="date" name="dob" className="form-control" id="dob" placeholder="Enter email" value={this.state.dob} onChange={this.handleChange} required/>
 
                 </div>
                 <div className="form-group">
                   <label htmlFor="email">Email address</label>
-                  <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.handleChange}  />
+                  <input type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={this.state.email} onChange={this.handleChange}  required/>
                   <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">
                   <label htmlFor="password">Password</label>
-                  <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.password} onChange={this.handleChange}  />
+                  <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
               </div>
               <div className="form-group">
-                  <label htmlFor="verify-password">Verify Password</label>
-                  <input type="password" name="verify" className="form-control verify-pass" id="everify-password" placeholder="Verify Password" value={this.state.verify} onChange={this.handleChange}  />
+                  <label htmlFor="verify-password">Verify Password <span className="text-success">{this.state.verifyMessage}</span><span className="text-danger">{this.state.verifyError}</span></label>
+                  <input type="password" name="verify" className="form-control verify-pass" id="everify-password" placeholder="Verify Password" value={this.state.verify} onChange={this.handleChange} required/>
               </div>
               <div className="form-group">
                   <button type="submit" className="btn btn-primary">Create Account</button>

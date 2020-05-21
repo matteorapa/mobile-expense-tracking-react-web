@@ -43,7 +43,7 @@ import { withRouter } from "react-router";
             console.log('Deleted expense successfully!');
             this.props.history.push({
               pathname: '/vault',
-              search: 'Your expense has been deleted sucessfully!' 
+              state: {message: "Your expense has been deleted sucessfully!"}
             })
       
           }
@@ -57,8 +57,16 @@ import { withRouter } from "react-router";
         .catch(error => console.warn(error))
     }
 
-    handleEdit(event) { 
-
+    handleEdit(event, id) { 
+     
+      const {history} = this.props;
+      const {location} = this.props;
+      history.push({
+        pathname: '/editexpense',
+  
+        state: { expense: location.state.expense }
+      });
+      
     }
 
     handleChange(event) { 

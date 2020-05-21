@@ -2,6 +2,15 @@ class Authentication{
     constructor(){
         this.authenticated = false;
         this.token = 'empty';
+
+        this.tokenCookie = this.getCookie("token");
+        if(this.tokenCookie !== "notfound"){
+            this.authenticated = true;
+            this.token = this.tokenCookie;
+            console.log("Authentication cookie found.")
+        }else{
+            console.log("Not authentication tokens found. Please login!");
+        }
        }
 
     async login(email, password, cb){
@@ -24,6 +33,7 @@ class Authentication{
         if (response.token) {
             this.token = response.token;
             this.authenticated = true;
+            this.setCookie("token", response.token);
             console.log('Credentials match, signed in successfully');
             cb()
         }
@@ -36,12 +46,43 @@ class Authentication{
     logout(cb){
         this.authenticated = false;
         this.token = null;
+        //remove tokenCookie
+        this.deleteCookie("token");
         cb();
     }
 
     isAuthenticated(){
         return this.authenticated;
     }
+
+    setCookie(name, value) {
+        var d = new Date();
+        d.setTime(d.getTime() + (60*60*1000));
+        var expires = "expires="+ d.toUTCString();
+        document.cookie = name + "=" + value + ";" + expires + ";path=/";
+      }
+
+    getCookie(name) {
+        var cookie = name + "=";
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var ca = decodedCookie.split(';');
+        for(var i = 0; i < ca.length; i++) {
+          var c = ca[i];
+          while (c.charAt(0) === ' ') {
+            c = c.substring(1);
+          }
+          if (c.indexOf(cookie) === 0) {
+            return c.substring(cookie.length, c.length);
+          }
+        }
+        return "notfound";
+      }
+
+    deleteCookie(name) {
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        return
+      }
+      
 
     async createUser(name, surname, date, email , password, cb){
         //api call to add user

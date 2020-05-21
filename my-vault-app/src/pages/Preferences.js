@@ -292,7 +292,7 @@ async updateTheme(cb) {
 
                 </div>
                 
-                  <button type="submit" className="btn btn-light">Save details</button>
+                  <button type="submit" className="btn btn-outline-success">Save details</button>
                 </form>
 
                 
@@ -305,7 +305,7 @@ async updateTheme(cb) {
                         <label htmlFor="firstname">Theme Color <small>{this.state.color}</small></label><br />
                         <input type="color" className="color-picker" id="themecolor" name="color" value={this.state.color}  onChange={this.handleChange} required/>
                   </div>
-                  <button type="submit" className="btn btn-light">Save Preferences</button>
+                  <button type="submit" className="btn btn-outline-success">Save Preferences</button>
 
                 </form>
                 

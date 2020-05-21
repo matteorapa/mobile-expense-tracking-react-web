@@ -1,65 +1,76 @@
 import React from 'react';
-import Header from '../components/Header';
 import authentication from '../authentication';
+import Header from '../components/Header'
 import Back from '../components/Back'
-import './page.css';
-import {Link} from 'react-router-dom';
 
-export default class AddTransaction extends React.Component {
+export default class EditTransaction extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            desc: '',
-            category: '',
-            amount: '',
-            payment: '',
-            currency: 'eur',
-            error: '',
-            online: false,
-            isPeriodic: false
-        }
-        
-    
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        
+  constructor(props){
+    super(props);
+    this.state = {
+        desc: "", currency: "", amount: 0, category: "", payment: "", online: false , date: "", id: 0, error: ""
     }
-    
+   
+    this.handleChange = this.handleChange.bind(this);
+    this.handleEdit = this.handleEdit.bind(this);
+  }
+
+  componentDidMount(){
+      //load expense into input fields
+         const {location} = this.props;
+        if(location.state.expense){
+            this.setState({
+                desc: location.state.expense.transactionTitle,
+                amount: location.state.expense.expenseCost,
+                currency: location.state.expense.transactionCurrency,
+                category: location.state.expense.expenseType,
+                payment: location.state.expense.transactionPlace,
+                date: location.state.expense.transactionDate.split("T"),
+                id: location.state.expense.expenseid,
+   
+            });
+            
+           document.getElementById("online").checked = location.state.expense.transactionOnline;
+
+        }else {
+            this.setState({error: "Error loading your expense. Please try again later."})
+        }
+         
+    }
+
     handleChange(event) { 
         
         switch(event.target.name){
             case 'description':
+                
                 this.setState({
                 desc: event.target.value
                 });
                 
             break;
             case 'amount':
+                
                 this.setState({
                 amount: event.target.value
                 });
                 
             break;
             case 'currency':
+                
                 this.setState({
                 currency: event.target.value
                 });
                 
             break;
             case 'category':
+                
                 this.setState({
                 category: event.target.value
                 });
                 
             break;
             case 'payment':
-                if(event.target.value === "Periodic"){
-                    //show peroidic fields
-                    //remove fields which are not needed
-                    //change api call to peroidic
-
-                }
+                
                 this.setState({
                 payment: event.target.value
                 });
@@ -72,67 +83,62 @@ export default class AddTransaction extends React.Component {
                 });
             break;
             default:
-                
                 break;
         }
     }
 
-    async handleSubmit(event) { 
-        event.preventDefault();
-        
-        await fetch('https://myvault.technology/api/expenses', {
-            method: 'POST',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer ' + authentication.token,
-            },
-            body: JSON.stringify({
-                title: this.state.desc,
-                category: this.state.category,
-                amount: this.state.amount,
-                cashCard: this.state.payment,
-                currency: this.state.currency,
-                onlineSwitch: this.state.online,
-            })
-        })
+  async handleEdit(event) { 
+    event.preventDefault();
+     
+    await fetch('https://myvault.technology/api/expenses/edit/' + this.state.id, {
+      method: 'PUT',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + authentication.token,
+      },
+      body: JSON.stringify({
+        category: this.state.category,
+        amount: this.state.amount,
+        cashCard: this.state.payment,
+        date: this.state.date,
+        currency: this.state.currency,
+        title: this.state.desc,
+        onlineSwitch: this.state.online,
+      })
+    })
 
+      .then(response => (response.json()))
+      .then((response) => {
 
-            .then(response => (response.json()))
-            .then((response) => {
+        if (response.success) {
+            const {history} = this.props;
+            history.push({
+                pathname: '/vault',
+                state: { message: "Your expense has been edited successfully!" }
+              });
+        }
+        else {
+            console.log('Error occured when editing expense!');
+            this.setState({
+                error: 'Unable to edit expense, please try again!'
+            });
+            console.log(response)
+        }
+      })
+      .catch(error => console.warn(error))
+  
+}
 
-                if (response.success) {
-                    console.log('Added transaction successfully!');
-                    this.props.history.push({
-                        pathname: '/vault',
-                        state: { message: "Your expense has been created sucessfully!" }
-                      });
-                }
-                else {
-                    console.log('Something went wrong!')
-                    this.setState({
-                        error: 'Unable to create expense, please try again.'
-                    });
-                    console.log(response)
-                    
-                }
-            })
-            .catch(error => console.warn(error))
-    }
-
-      render() {
-        return (
-          <div>
-            <Header />
-            <div className="main-container focused">
+  render() {
+      return (
+        <div>
+          <Header />
+          <div className="main-container focused">
             <Back /><br /><br />
-            <div className="edge-row">
-                <h2>Add Expense</h2>
-                <Link to="/addperiodic" className="btn btn-outline-secondary btn-sm">Add Periodic Expense <i className="fas fa-long-arrow-alt-right"></i></Link>
-            </div>
-              <hr /><br />
+            <h2>Edit Expense</h2><hr /><br />
               
-              <form id="add-expense-form"  onSubmit={this.handleSubmit} method="post">
+              <form id="add-expense-form"  onSubmit={this.handleEdit} method="post">
               
                 <div className="form-group">
                     <div className="form-row">
@@ -153,7 +159,7 @@ export default class AddTransaction extends React.Component {
                                         </select>
                                     </div>
                                 </div>
-                                <input type="number" name="amount" className="form-control" id="amount" placeholder="Expense amount" value={this.state.amount} onChange={this.handleChange} required/>
+                                <input type="number" name="amount" className="form-control" id="amount" placeholder="Expense amount" min="0" value={this.state.amount} onChange={this.handleChange} required/>
                             </div>
                         </div>
                 </div>
@@ -181,8 +187,9 @@ export default class AddTransaction extends React.Component {
                         <label className="form-check-label" htmlFor="payment">Payment Method</label>
                     
                         <select className="form-control" id="payment" name="payment" value={this.state.payment} onChange={this.handleChange}>
-                            <option>Cash</option>
-                            <option>Card</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Card">Card</option>
+                            <option value="Periodic">Periodic</option>
                         </select><br />
                         
                         
@@ -193,13 +200,12 @@ export default class AddTransaction extends React.Component {
                             <small id="onlineHelp" className="form-text text-muted">Monitor your expenses which happen online.</small>
                         </div>
                 </div>
-                <button type="submit" className="btn btn-outline-success">Add Expense</button>
+                <button type="submit" className="btn btn-outline-success">Edit Expense</button>
                 <span className="text-danger">{this.state.error}</span>
             </form>
               
             </div>
-          </div>
-          
-        );
-      }
+      </div>
+      );
     }
+  }

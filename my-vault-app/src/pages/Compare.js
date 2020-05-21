@@ -1,5 +1,4 @@
 import React from 'react';
-import authentication from '../authentication';
 import Header from '../components/Header';
 import {Radar} from 'react-chartjs-2';
 import PieChart from '../components/PieChart';
@@ -98,6 +97,8 @@ export default class Compare extends React.Component {
           
               <h2 className="center-box">You spent <strong className="theme-text">126%</strong> more on <u>Shopping</u> over the past month when compared with your age group.</h2>
               <br /><br />
+              <Radar data={this.data} />
+              <br /><br /><br />
 
               <h2>Your monthly spending over the past year</h2><br />
               <BarChart/>
@@ -106,8 +107,8 @@ export default class Compare extends React.Component {
               <h2>Your monthly spending by category</h2><br />
               <PieChart />
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-              <hr /><br /><br /><br />
-              <Radar data={this.data} />
+              <hr />
+              
               
           </div>
         </div>

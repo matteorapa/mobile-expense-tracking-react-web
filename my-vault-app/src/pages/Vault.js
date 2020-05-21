@@ -2,15 +2,24 @@ import React from 'react';
 import './page.css';
 import TransactionLoader from '../components/TransactionLoader';
 import Header from '../components/Header';
+import authentication from '../authentication'
 
 
 export default class Vault extends React.Component {
   constructor(props){
     super(props)
-    
-      this.state = {
-        message: this.props.location.search
-      } 
+      console.log(this.props.location);
+
+      if(this.props.location.state === undefined){
+          this.state = {
+            message: "", //default to empty
+          } 
+      }else{
+        this.state = {
+          message: this.props.location.state.message
+        } 
+      }
+      
   }
 
   handleCloseModal(event, cb){
@@ -20,11 +29,34 @@ export default class Vault extends React.Component {
   }
 
   componentDidMount(){
-    //do if message not empty
-    if(this.state.message != ''){
-      var modal = document.getElementById("messageClose");
-      modal.style.display = "block";
-    }
+
+    fetch('https://myvault.technology/api/expenses/periodic', {
+      method: 'PUT',
+      headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + authentication.token,
+      },
+  })
+
+
+      .then(response => (response.json()))
+      .then((response) => {
+
+          if (response.success) {
+          }
+          else {
+              console.log('Error updating periodic expenses')
+              console.log(response);
+          }
+      })
+      .catch(error => console.warn(error))
+
+      //do if message not empty
+      if(this.state.message !== ""){
+        var modal = document.getElementById("messageClose");
+        modal.style.display = "block";
+      }
     
   }
 

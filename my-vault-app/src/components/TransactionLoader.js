@@ -5,12 +5,8 @@ import { withRouter } from "react-router";
 import authentication from '../authentication';
 import {Link} from "react-router-dom";
 import BarChart from './BarChart';
-import PieChart from './PieChart';
-import LineChart from './LineChart';
-
 
 class TransactionLoader extends React.Component {
-  
 
     constructor(props) {
       super(props);
@@ -33,7 +29,8 @@ class TransactionLoader extends React.Component {
     };
  
     componentDidMount(type) {
-
+      const {location} = this.props;
+         console.log(location);
       if(type){ //check if type is being passed
         switch(type){
           case 'all': 
@@ -51,6 +48,9 @@ class TransactionLoader extends React.Component {
           case 'yearly': 
           type = 'https://myvault.technology/api/expenses/y'
           break;
+          default:
+            type = 'https://myvault.technology/api/expenses/'
+            break;
         }
 
       }else{
@@ -83,7 +83,7 @@ class TransactionLoader extends React.Component {
           .catch((error) => {
             console.log(error);
           });
-      }
+    }
 
     async addTransaction(event){
 
@@ -122,10 +122,7 @@ class TransactionLoader extends React.Component {
         .catch(error => console.warn(error))
     }
 
-    
-
-
-      handleChange(event, type){
+    handleChange(event, type){
         this.componentDidMount(type);
 
         let b1 = document.getElementById('all');
@@ -142,20 +139,19 @@ class TransactionLoader extends React.Component {
 
         let pressed = document.getElementById(type);
         pressed.style.borderColor = 'var(--theme-color)';
-      }
+    }
 
-
-      handleFilter(event, category){
+    handleFilter(event, category){
         this.setState({
           filter: category,
         });
         //this.componentDidMount();
         this.forceUpdate()
-      }
+    }
   
     render() {
 
-        const {history} = this.props;
+        
 
         let data = this.state.dataSource;
         let transactions = data.map((e) => {return (<Transaction key={e.expenseId} expense={e} filter={this.state.filter}/> )} ); 
@@ -261,9 +257,9 @@ class TransactionLoader extends React.Component {
                           <div className="dropdown-category" onClick={() => this.handleFilter(this, 'Other')}><i className="fas fa-random"></i> Other</div>
                         </div>
                       </div>
-
-                      <Link to="/addexpense" type="button" className="btn btn-outline-primary btn-block function"><i className="fas fa-plus"></i> Add expense</Link>
                       <Link to="/periodic" className="btn btn-outline-secondary function">Periodic</Link>
+                      <Link to="/addexpense" type="button" className="btn btn-outline-primary btn-block function"><i className="fas fa-plus"></i> Add expense</Link>
+                      
                   </div><br />   
                   <div className="transactions">
                           {transactions}         

@@ -13,6 +13,7 @@ import Preferences from './pages/Preferences';
 import AddTransaction from './pages/AddTransaction'
 import AddPeriodic from './pages/AddPeriodic';
 import PeriodicLoader from './pages/PeriodicLoader'; 
+import EditTransaction from './pages/EditTransaction';
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
           <ProtectedRoute path="/compare" component={Compare} exact/>
           <ProtectedRoute path="/expense" component={ExpenseTemplate} />
           <ProtectedRoute path="/periodic" component={PeriodicLoader} />
-          <Route path="/addexpense" component={AddTransaction} />
+          <ProtectedRoute path="/addexpense" component={AddTransaction} />
+          <ProtectedRoute path="/editexpense" component={EditTransaction} />
           <ProtectedRoute path="/addperiodic" component={AddPeriodic} />
           <ProtectedRoute path="/account" component={Preferences} />
           <Route path="/signup" component={Account} exact/>
