@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import authentication from '../authentication';
 import {Link} from "react-router-dom";
 import BarChart from './BarChart';
+import {getCategoryIcon} from '../global';
 
 class TransactionLoader extends React.Component {
 
@@ -163,56 +164,8 @@ class TransactionLoader extends React.Component {
           categoryIcon = "fas fa-funnel-dollar";
         }else {
           currentFilter = this.state.filter;
-
-          switch(this.state.filter){
-            case 'Groceries':
-                categoryIcon = 'fas fa-shopping-basket'
-              break;
-    
-              case 'Food':
-                categoryIcon = 'fas fa-utensils'
-              break;
-    
-              case 'Shopping':
-                categoryIcon = 'fas fa-tshirt'
-              break;
-    
-              case 'Travel':
-                categoryIcon = 'fas fa-route'
-              break;
-    
-              case 'Leisure':
-                categoryIcon = 'far fa-smile-wink'
-              break;
-    
-              case 'Health':
-                categoryIcon = 'fas fa-heartbeat'
-              break;
-    
-              case 'Home':
-                categoryIcon = 'fas fa-home'
-              break;
-    
-              case 'Tech':
-                categoryIcon = 'fas fa-tv'
-              break;
-    
-              case 'Utilities':
-                categoryIcon = 'fas fa-hand-holding-water'
-              break;
-    
-              case 'Bills':
-                categoryIcon = 'fas fa-file-invoice'
-              break;
-    
-              case 'Other':
-                categoryIcon = 'fas fa-random'
-              break;  
-    
-              default:
-                categoryIcon = 'fas fa-random'
-                break;
-          }
+          categoryIcon = getCategoryIcon(this.state.filter);
+          
         }
 
 

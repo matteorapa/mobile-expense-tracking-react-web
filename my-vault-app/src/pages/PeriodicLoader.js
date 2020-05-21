@@ -321,7 +321,7 @@ export default class PeriodicLoader extends React.Component {
                                         <div className="input-group mb-2">
                                             <div className="input-group-prepend">
                                                 <div className="input-group-text">
-                                                    <select className="currency-box" id="currency" name="currency" value={this.state.currency} onChange={this.handleChange} required>
+                                                    <select className="currency-box" id="currency" name="currency" min="0" value={this.state.currency} onChange={this.handleChange} required>
                                                         <option value="eur">EUR</option>
                                                         <option value="usd">USD</option>
                                                         <option value="gbp">GBP</option>
