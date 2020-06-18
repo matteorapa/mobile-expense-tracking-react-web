@@ -15,7 +15,9 @@ export default class Account extends React.Component {
       verify: '',
       error: '',
       verifyMessage: "",
-      verifyError: ""
+      verifyError: "",
+      passwordMessage: "",
+      passwordError: "",
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -51,6 +53,21 @@ export default class Account extends React.Component {
                 this.setState({
                   password: event.target.value
                 });
+                
+            
+                if(event.target.value.length >= 8){
+                
+                  this.setState({
+                    passwordMessage: "✓ Passwords is valid",
+                    passwordError: ""
+                  });
+                  
+                }else {
+                  this.setState({
+                    passwordError: "Password must be at least 8 characters long.",
+                    passwordMessage: ""
+                  });
+                }
                 break;
 
         case 'verify':
@@ -149,7 +166,7 @@ export default class Account extends React.Component {
                   <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
               </div>
               <div className="form-group">
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">Password <span className="text-success">{this.state.passwordMessage}</span><span className="text-warning">{this.state.passwordError}</span></label>
                   <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
               </div>
               <div className="form-group">

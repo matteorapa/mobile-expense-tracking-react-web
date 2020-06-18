@@ -1,3 +1,8 @@
-runtime: nodejs
-env: flex
+runtime: nodejs12
+env: standard
 service: web-app
+
+handlers:
+- url: /
+  static_files: build/index.html
+  upload: build/index.html

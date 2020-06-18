@@ -11,9 +11,9 @@ export default class AddTransaction extends React.Component {
         super(props);
         this.state = {
             desc: '',
-            category: '',
+            category: 'Shopping',
             amount: '',
-            payment: '',
+            payment: 'Cash',
             currency: 'eur',
             error: '',
             online: false,
