@@ -63,6 +63,8 @@ p{
 
 .expense:hover{
     border: 1px double var(--theme-color);
+    background-color: var(--theme-color);
+    font-size: 18px;
     margin: 16px;
     transform: scale(1.1);
     
@@ -280,7 +282,8 @@ p{
     }
 
     .tr-options{
-        color: rgb(120,120,120);
+        color: var(--theme-color);
+        filter: brightness(0.5);
         flex: 1;
     }
 

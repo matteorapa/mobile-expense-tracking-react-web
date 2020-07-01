@@ -12,10 +12,45 @@ export default class BarChart extends React.Component {
         super(props);
         this.state = {
           isLoading: true,
+          themeColor: '#707070',
         }
     }
 
     async componentDidMount() {
+      if(authentication.isAuthenticated()){
+        await fetch('https://myvault.technology/api/pref', {
+        method: 'GET',
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + authentication.token,
+        },
+    })
+        .then((response) => response.json())
+        .then((response) => {
+            if (response.success) {
+                
+                this.setState(function() {
+                    return {
+                        themeColor: response.output[0].colour
+                    };
+                  });
+                  console.log('Setting theme color success!');
+
+                  
+            }
+            else {
+                console.log('There was an error loading theme settings from barchart component');
+                console.log(response.output);
+            }
+
+        })
+
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+
         await fetch('https://myvault.technology/api/analytics/MonthlyTotalsEUR', {
           method: 'GET',
           headers: {
@@ -58,11 +93,11 @@ export default class BarChart extends React.Component {
             datasets: [
               {
                 label: 'Spending over the past 12 months',
-                backgroundColor: 'rgba(255,99,132,0.2)',
-                borderColor: 'rgba(255,99,132,1)',
+                backgroundColor: this.state.themeColor,
+                borderColor: this.state.themeColor,
                 borderWidth: 1,
-                hoverBackgroundColor: 'rgba(255,99,132,0.4)',
-                hoverBorderColor: 'rgba(255,99,132,1)',
+                hoverBackgroundColor: this.state.themeColor,
+                hoverBorderColor: this.state.themeColor,
                 data: temp
               }
             ]
