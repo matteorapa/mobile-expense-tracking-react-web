@@ -68,26 +68,33 @@ class Signin extends React.Component {
 
 
   render(){
-    
-    return(
-      <form id="signin" onSubmit={this.handleSubmit} method="post">
-          <div className="form-group">
-              
-              <h3>Sign In</h3>
-              <label htmlFor="email">Email address</label>
-              <input type="email" name="email" className="form-control" id="email" placeholder="Enter email" value={this.state.user_email} onChange={this.handleChange} required/>
-              
-              <label htmlFor="password">Password</label>
-              <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.user_password} onChange={this.handleChange} required/>
-              <small className="form-text- text-danger text-center">{this.state.error}</small> 
-          </div>
+    if(!authentication.isAuthenticated()){
+      return(
+        <form id="signin" onSubmit={this.handleSubmit} method="post">
+            <div className="form-group">
+                
+                <h3>Sign In</h3>
+                <label htmlFor="email">Email address</label>
+                <input type="email" name="email" className="form-control" id="email" placeholder="Enter email" value={this.state.user_email} onChange={this.handleChange} required/>
+                
+                <label htmlFor="password">Password</label>
+                <input type="password" name="password" className="form-control" id="password" placeholder="Password" value={this.state.user_password} onChange={this.handleChange} required/>
+                <small className="form-text- text-danger text-center">{this.state.error}</small> 
+            </div>
+  
+            <div className="form-group submit">
+                <button type="submit" className="btn btn-primary">Sign in</button>
+                <small id="emailHelp" className="form-text text-muted">Don't have an account? <Link to="/account">Sign up</Link></small> 
+            </div>
+        </form>
+      );
 
-          <div className="form-group submit">
-              <button type="submit" className="btn btn-primary">Signin</button>
-              <small id="emailHelp" className="form-text text-muted">Don't have an account? <Link to="/account">Sign up</Link></small> 
-          </div>
-      </form>
-    );
+    }
+    else {
+      return(<div className="already-signed-in"></div>)
+
+    }
+    
   }
 }
 

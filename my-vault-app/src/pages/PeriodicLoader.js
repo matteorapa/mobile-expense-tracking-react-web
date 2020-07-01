@@ -235,35 +235,8 @@ export default class PeriodicLoader extends React.Component {
             let categoryIcon = getCategoryIcon(p.expensetype);
             var date = new Date(p.lasttransdate);
             var now = new Date();   
-            var dateText = "";
-            //check whether date is in past
-            if (now - date > 0 ) {
-                var d = new Date();
-                var days = 0;
-                var splittedInterval = p.interval.split(" ");
-                switch(splittedInterval[1]){
-                    case "Day":
-                        days = parseInt(splittedInterval[0], 10);
-                        break;
-                    case "Week":
-                        days = parseInt(splittedInterval[0], 10) * 7;
-                        break;
-                    case "Month":
-                        days = parseInt(splittedInterval[0], 10) * 30;
-                        break;
-                    case "Year":
-                        days = parseInt(splittedInterval[0], 10) * 365;
-                        break;
-                    default:
-                        break;
-                }
-                d.setTime(d.getTime() + (days*24*60*60*1000));
-                dateText = "Your next expense will be added on " + d.toLocaleDateString();
-                
-            }else {
-                //future date, show date when periodic starts
-                dateText = "Your periodic expense will start on " + date.toLocaleDateString();
-            }
+            
+
 
             //return template for every periodic expense
             return (<div key={p.periodicid} className="transaction expense" onClick={this.handleClick}>
@@ -273,7 +246,7 @@ export default class PeriodicLoader extends React.Component {
                         </div>
                         <div className="inner-periodic">
                             <span><strong>{p.transactiontitle}</strong></span><br/>
-                            <span className="text-muted">{dateText}</span><hr/>
+                            <hr />
 
                             <span className="">{p.transactioncurrency} | {p.expensecost}</span>
                                 

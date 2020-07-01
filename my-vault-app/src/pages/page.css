@@ -282,8 +282,7 @@ p{
     }
 
     .tr-options{
-        color: var(--theme-color);
-        filter: brightness(0.5);
+      
         flex: 1;
     }
 
@@ -434,6 +433,7 @@ p{
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        margin: 64px;
     }
 
 
@@ -478,6 +478,10 @@ p{
         width: 95%;
         height: 85vh;
         overflow-y: auto;
+    }
+
+    .edge-row{
+        flex-direction: column;
     }
 }
 
