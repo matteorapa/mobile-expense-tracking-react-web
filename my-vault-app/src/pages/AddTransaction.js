@@ -173,7 +173,7 @@ export default class AddTransaction extends React.Component {
                         <option value="Leisure">Leisure</option>
                         <option value="Home">Home</option>
                         <option value="Tech">Tech</option>
-                        <option value="Leisure">Bills</option>
+                        <option value="Bills">Bills</option>
                     </select>
                 </div>
                 

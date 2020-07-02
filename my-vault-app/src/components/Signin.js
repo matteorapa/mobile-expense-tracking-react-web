@@ -84,7 +84,7 @@ class Signin extends React.Component {
   
             <div className="form-group submit">
                 <button type="submit" className="btn btn-primary">Sign in</button>
-                <small id="emailHelp" className="form-text text-muted">Don't have an account? <Link to="/account">Sign up</Link></small> 
+                <small id="emailHelp" className="form-text text-muted">Don't have an account? <Link to="/signup">Sign up</Link></small> 
             </div>
         </form>
       );
