@@ -179,7 +179,7 @@ class TransactionLoader extends React.Component {
         }else{
             return (
               <div>
-                  <BarChart />
+                  {/* <BarChart /> */}
                 
                   <div className="button-row">
 

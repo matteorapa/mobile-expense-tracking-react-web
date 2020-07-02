@@ -2,7 +2,8 @@ import React from 'react';
 import './page.css';
 import TransactionLoader from '../components/TransactionLoader';
 import Header from '../components/Header';
-import authentication from '../authentication'
+import authentication from '../authentication';
+import BarChart from '../components/BarChart';
 
 
 export default class Vault extends React.Component {
@@ -82,7 +83,7 @@ export default class Vault extends React.Component {
               <div className="content-block">
                 <h2>My Expenses</h2>
                 
-
+                <BarChart />
                 <TransactionLoader />          
               </div>
 
